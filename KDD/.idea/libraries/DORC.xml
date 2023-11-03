@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="DORC">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/DORC/out/artifacts/DORC_jar/DORC.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
