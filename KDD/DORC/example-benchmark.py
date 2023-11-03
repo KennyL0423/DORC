@@ -166,7 +166,7 @@ if __name__ == "__main__":
 
     for method in method_list:
         predPath = "./outputdata/updateExample/" + method + "/change_size/"
-        for size in size_list:
+        for size in rate_list:
             purity = 0.0
             nmi = 0.0
             error = 0.0

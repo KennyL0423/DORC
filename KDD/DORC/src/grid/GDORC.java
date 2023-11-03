@@ -236,7 +236,7 @@ public class GDORC extends Scan {
             int [] pC;
             // get current grid row and col
             pC=p.getGrid(minX, minY);
-            // TODO: noise neighboring point
+            // TODO: noise neighboring point and noise cell
             if(Noise.size()>=(1-p.getYLP())*minPoints)
             {
                 int repeatTimes=(int) ((1-p.getYLP())*minPoints);

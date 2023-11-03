@@ -9,7 +9,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59aacb17-717b-4140-b88c-5f7a5337ea0f" name="Changes" comment="" />
+    <list default="true" id="59aacb17-717b-4140-b88c-5f7a5337ea0f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/example-benchmark.py" beforeDir="false" afterPath="$PROJECT_DIR$/example-benchmark.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/foursquare/change_size_NMI.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/change_size_NMI.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/foursquare/change_size_error.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/change_size_error.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/foursquare/change_size_purity.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/change_size_purity.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/foursquare/change_size_time.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/change_size_time.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/foursquare/eta=500_eps=0.06_NMI.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/eta=500_eps=0.06_NMI.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/foursquare/eta=500_eps=0.06_error.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/eta=500_eps=0.06_error.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/foursquare/eta=500_eps=0.06_purity.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/eta=500_eps=0.06_purity.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/foursquare/eta=500_eps=0.06_time.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/eta=500_eps=0.06_time.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eps=0.06_NMI.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eps=0.06_NMI.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eps=0.06_error.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eps=0.06_error.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eps=0.06_purity.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eps=0.06_purity.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eps=0.06_time.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eps=0.06_time.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eta=500_NMI.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eta=500_NMI.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eta=500_error.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eta=500_error.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eta=500_purity.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eta=500_purity.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eta=500_time.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eta=500_time.eps" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +39,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -41,15 +62,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/kenny/Desktop/GridDBscan&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/GitHub/DORC/KDD/DORC",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Python.benchmark">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
