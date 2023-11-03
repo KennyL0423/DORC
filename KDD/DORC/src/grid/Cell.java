@@ -102,7 +102,6 @@ public class Cell {
 //    		System.out.println("Plist: "+this.getList().size());
             for(Point p:this.getList())
             {
-
                 if(p.isNoise())
 //       		 if(p.getLabel().equals("NOISE"))
                 {

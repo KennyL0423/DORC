@@ -10,23 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59aacb17-717b-4140-b88c-5f7a5337ea0f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/example-benchmark.py" beforeDir="false" afterPath="$PROJECT_DIR$/example-benchmark.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/foursquare/change_size_NMI.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/change_size_NMI.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/foursquare/change_size_error.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/change_size_error.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/foursquare/change_size_purity.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/change_size_purity.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/foursquare/change_size_time.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/change_size_time.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/foursquare/eta=500_eps=0.06_NMI.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/eta=500_eps=0.06_NMI.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/foursquare/eta=500_eps=0.06_error.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/eta=500_eps=0.06_error.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/foursquare/eta=500_eps=0.06_purity.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/eta=500_eps=0.06_purity.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/foursquare/eta=500_eps=0.06_time.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/eta=500_eps=0.06_time.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eps=0.06_NMI.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eps=0.06_NMI.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eps=0.06_error.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eps=0.06_error.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eps=0.06_purity.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eps=0.06_purity.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eps=0.06_time.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eps=0.06_time.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eta=500_NMI.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eta=500_NMI.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eta=500_error.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eta=500_error.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eta=500_purity.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eta=500_purity.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eta=500_time.eps" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/foursquare/rate=0.02_eta=500_time.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputdata/updateExample/QDORC/eta=6_eps=15/resLog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/outputdata/updateExample/QDORC/eta=6_eps=15/resLog.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grid/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grid/GDORC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid/GDORC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grid/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid/Grid.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +59,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.benchmark">
+  <component name="RunManager" selected="Application.BenchMarkEntrance">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -140,8 +128,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.benchmark" />
         <item itemvalue="Application.BenchMarkEntrance" />
+        <item itemvalue="Python.benchmark" />
         <item itemvalue="Application.Entrance" />
       </list>
     </recent_temporary>

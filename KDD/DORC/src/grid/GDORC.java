@@ -236,16 +236,19 @@ public class GDORC extends Scan {
             int [] pC;
             // get current grid row and col
             pC=p.getGrid(minX, minY);
-            // TODO: noise neighboring point and noise cell
+            // TODO: noise neighboring point, fix according to pseudo-code
             if(Noise.size()>=(1-p.getYLP())*minPoints)
             {
                 int repeatTimes=(int) ((1-p.getYLP())*minPoints);
+                // TODO: move to the end
                 p.setLabelCore();
                 p.setYLP(1);
                 Noise.remove(p);
+
                 while(repeatTimes>0)
                 {
                     int [] nc=new int[2];
+                    // input i and j, calc for nearest noise cell (minimum distance)
                     nc=grid.calculateNearestNoiseCell(pC[0], pC[1]);
                     if(grid.hasCell(nc[0], nc[1]))
                     {
@@ -270,6 +273,7 @@ public class GDORC extends Scan {
                         Noise.remove(npi);
                         repeatTimes--;
                     }
+                    // TODO: always break?
                     break;
                 }
             }

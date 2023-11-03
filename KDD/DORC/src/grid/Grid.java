@@ -11,7 +11,7 @@ public class Grid {
     public int nrows;
     public static int ncols;
 
-    // TODO
+    // TODO: maintain a neighbor list for each point?
 
     public Grid(double eps) {
         cellWidth = eps / Math.sqrt(2);
@@ -58,10 +58,10 @@ public class Grid {
     }
 
     /**
-     *Calculates the list of neighbor Cells of a given Cell.
+     *Calculates the nearest noise cell of a cell
      * @param i
      * @param j
-     * @return a list of neighbor Cells of current cell
+     * @return a cell's i and j
      */
     public int[] calculateNearestNoiseCell(int i, int j) {
 //        Cell nCell = null;
@@ -70,31 +70,32 @@ public class Grid {
         int tempJ=1000000000;//Integer.MAX_VALUE;
         int ti=10000;//Integer.MAX_VALUE;
         int tj=10000;//Integer.MAX_VALUE;
-
+        // start from the target and check right
         for (int row = i; row <= nrows; row++) {
+            // then check for the bottom
             for (int col = j; col <= ncols; col++) {
-
+                // if the found noise cell is closer, then break
                 if((ti*ti+tj*tj)<=(Math.pow((col-j), 2)+(Math.pow((row-i), 2))))
                 {
                     break;
                 }
-
+                // if there exists cell's corresponding key
                 if(this.hasCell(row, col))
                 {
-
+                    // if this cell has noise point
                     if(this.getCell(row, col).getNoiseList())
                     {
+                        // tempJ and temp record the row and col
                         tempJ=col;
                         temp=row;
+                        // t is more like delta, measures the difference of nearest noise col and j
                         tj=col-j;
                         ti=row-i;
-
                         break;
                     }
                 }
             }
-
-
+            // check for the top, only needs to check for the cols within delta j to j
             for (int col = j; col >= j-(tempJ-j) && col>=0; col--) {
                 if((ti*ti+tj*tj)<=(Math.pow((col-j), 2)+(Math.pow((row-i), 2))))
                 {
@@ -102,31 +103,25 @@ public class Grid {
                 }
                 if(this.hasCell(row, col))
                 {
-
-//        			}
                     if(this.getCell(row, col).getNoiseList())
                     {
                         tempJ=col;
                         temp=row;
                         tj=j-col;
                         ti=row-i;
-
                         break;
                     }
                 }
-
             }
-
         }
-
-
-        for (int row = i; row >=0; row--) {//i-Math.abs(t-i)
+        // check for the left
+        for (int row = i; row >= i-ti && row >=0; row--) {//i-Math.abs(t-i)
+            // check for the bottom
             for (int col = j; col <= ncols; col++) {//j-Math.abs(t-j)
                 if((ti*ti+tj*tj)<=(Math.pow((col-j), 2)+(Math.pow((row-i), 2))))
                 {
                     break;
                 }
-
                 if(this.hasCell(row, col))
                 {
                     if(this.getCell(row, col).getNoiseList())
@@ -140,17 +135,14 @@ public class Grid {
                     }
                 }
             }
-
-
+            // check for the top
             for (int col = j; col >=j-Math.abs(tempJ-j) && col>=0; col--) {//j-(tempJ-j)
-
                 if((ti*ti+tj*tj)<=(Math.pow((col-j), 2)+(Math.pow((row-i), 2))))
                 {
                     break;
                 }
                 if(this.hasCell(row, col))
                 {
-
                     if(this.getCell(row, col).getNoiseList())
                     {
                         tempJ=col;
@@ -160,14 +152,11 @@ public class Grid {
                         break;
                     }
                 }
-
             }
-
         }
         int [] nc= new int[2];//{temp, tempJ};
         nc[0]=temp;
         nc[1]=tempJ;
-
         return nc;
     }
 
@@ -201,7 +190,6 @@ public class Grid {
                         break;
                     }
             }
-
             for (int col = j; col >= j-Math.abs(tempJ-j) && col>=0; col--) {
                 if((ti*ti+tj*tj)<=(Math.pow((col-j), 2)+(Math.pow((row-i), 2))))
                 {
@@ -216,21 +204,14 @@ public class Grid {
                         ti=row-i;
                         break;
                     }
-
             }
-
-
         }
-
-
         for (int row = i; row >=0; row--) {//i-Math.abs(t-i)
             for (int col = j; col <= ncols; col++) {//j-Math.abs(t-j)
-
                 if((ti*ti+tj*tj)<=(Math.pow((col-j), 2)+(Math.pow((row-i), 2))))
                 {
                     break;
                 }
-
                 if(this.hasCell(row, col))
                     if(this.getCell(row, col).getNonNoiseList())
                     {
@@ -241,8 +222,6 @@ public class Grid {
                         break;
                     }
             }
-
-
             for (int col = j; col >=j-Math.abs(tempJ-j) && col>=0; col--) {//j-(tempJ-j)
                 if((ti*ti+tj*tj)<=(Math.pow((col-j), 2)+(Math.pow((row-i), 2))))
                 {
