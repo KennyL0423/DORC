@@ -25,6 +25,13 @@ public class Grid {
         grid = new HashMap<>();
     }
 
+    public int getNrows() {
+        return nrows;
+    }
+    public int getNcols(){
+        return ncols;
+    }
+
     /**
      *Calculates the list of neighbor Cells of a given Cell.
      * @param i
@@ -115,7 +122,7 @@ public class Grid {
             }
         }
         // check for the left
-        for (int row = i; row >= i-ti && row >=0; row--) {//i-Math.abs(t-i)
+        for (int row = i; row >= i-Math.abs(ti) && row >=0; row--) {//i-Math.abs(t-i)
             // check for the bottom
             for (int col = j; col <= ncols; col++) {//j-Math.abs(t-j)
                 if((ti*ti+tj*tj)<=(Math.pow((col-j), 2)+(Math.pow((row-i), 2))))
@@ -168,6 +175,7 @@ public class Grid {
      * @return a list of neighbor Cells of current cell
      */
     public int[] calculateNearestNonNoiseCell(int i, int j) {
+//      similar to calculateNearestNoiseCell
 //      Cell nCell = null;
         int mv=1000000000;
         int temp=1000000000;//Integer.MAX_VALUE;

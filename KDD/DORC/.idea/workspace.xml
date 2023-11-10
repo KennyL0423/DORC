@@ -11,10 +11,15 @@
   <component name="ChangeListManager">
     <list default="true" id="59aacb17-717b-4140-b88c-5f7a5337ea0f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputdata/updateExample/QDORC/eta=6_eps=15/resLog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/outputdata/updateExample/QDORC/eta=6_eps=15/resLog.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grid/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/grid/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/grid/Cell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/grid/GDORC.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/grid/GDORC.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/grid/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/grid/Grid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/main/Entrance.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/main/Entrance.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputdata/updateExample/GDORC/eta=6_eps=15/GDORC_time.txt" beforeDir="false" afterPath="$PROJECT_DIR$/outputdata/updateExample/GDORC/eta=6_eps=15/GDORC_time.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputdata/updateExample/QDORC/eta=6_eps=15/QDORC_time.txt" beforeDir="false" afterPath="$PROJECT_DIR$/outputdata/updateExample/QDORC/eta=6_eps=15/QDORC_time.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/grid/GDORC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid/GDORC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/grid/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid/Grid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Entrance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Entrance.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,16 +55,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/GitHub/DORC/KDD/DORC",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/GitHub/DORC/KDD/DORC&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Application.BenchMarkEntrance">
+}</component>
+  <component name="RunManager" selected="Application.Entrance">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -128,9 +133,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Entrance" />
         <item itemvalue="Application.BenchMarkEntrance" />
         <item itemvalue="Python.benchmark" />
-        <item itemvalue="Application.Entrance" />
       </list>
     </recent_temporary>
   </component>
@@ -196,5 +201,26 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
