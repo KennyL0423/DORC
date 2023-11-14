@@ -314,7 +314,7 @@ public class GDORC extends Scan {
         }
     }
 
-    public void qdorc(){
+    public void oldqdorc(){
         minX = Double.MAX_VALUE;
         minY = Double.MAX_VALUE;
         for (Point p : points) {
@@ -406,138 +406,138 @@ public class GDORC extends Scan {
         }
     }
 
-    // ly version of qdorc (based on pseudocode)
-//    public void qdorc(){
-//        // sort the pt lists
-//        if(Noise.size() != 0){
-//            Noise.sort(null);
-//        }
-//        if(Border.size() != 0){
-//            Border.sort(null);
-//        }
-//        // combined noise and border as noncore
-//        ArrayList<Point> nonCore = new ArrayList<>(Noise);
-//        nonCore.addAll(Border);
-//        if(nonCore.size() != 0){
-//            nonCore.sort(null);
-//        }
-//        // gdorc algorithm here: algorithm 2 in paper
-//        // repair while noise points exist
-//        // debug: System.out.println("Noise size:" + Noise.size());
-//        while (Noise.size()!=0)
-//        {
-//            // since sorted, can get point pj in uj with maximum yj and yj < 1
-//            Point pj = nonCore.get(nonCore.size()-1);
-//            int [] uj_ij = pj.getGrid(minX, minY);
-//            Cell uj = grid.getCell(uj_ij[0], uj_ij[1]);
-//            ArrayList<Point> pj_noise_neighbors = noise_neighbors.get(pj.getId());
-//            // debug: System.out.println("pj noise neighbors:" + pj_noise_neighbors.size());
-//            if((Noise.size()-pj_noise_neighbors.size()) >= (1-pj.getYLP())*minPoints)
-//            {
-//                // pseudocode
-//                int repeatTimes=(int) (((1-pj.getYLP())*minPoints) + pj_noise_neighbors.size());
-//                // debug: System.out.println("repeat times: " + repeatTimes);
-//                // int repeatTimes=(int) ((1-pj.getYLP())*minPoints);
-//                // enough to make it a core
-//                // find the nearest noise cell ui to uj
-//                // find the noise point pi in ui
-//                while(repeatTimes>0)
-//                {
-//                    // currently here
-//                    // find the nearest noise cell
-//                    int [] ui_ij = grid.calculateNearestNoiseCell(uj_ij[0], uj_ij[1]);
-//                    if(grid.hasCell(ui_ij[0], ui_ij[1]))
-//                    {
-//                        Cell ui=grid.getCell(ui_ij[0], ui_ij[1]);
-////                        int ikey = ui_ij[0] * (grid.getNcols() + 1) + ui_ij[1];
-////                        // gets all the noise points in the noise cell
-////                        ArrayList<Point> pis = cell_noise_points.get(ikey);
-//                        List<Point> pis = ui.getList();
-//                        for(Point pi : pis)
-//                        {
-//                            if (pi.isNoise()){
-//                                if (pj.getDistanceFrom(pi) > eps){
-//                                    // repair pi to pj
-//                                    pi.setCluster(pj.getCluster());
-//                                    pi.setLabelCore();
-//                                    pi.setX(pj.getX());
-//                                    pi.setY(pj.getY());
-//                                    ArrayList<Point> pj_neighbors = NeighborPoints(pj);
-//                                    ArrayList<Point> pi_neighbors = NeighborPoints(pi);
-//                                    for (Point pk : pj_neighbors){
-//                                        if (pi.getDistanceFrom(pk) > eps){
-//                                            double kylp = pk.getYLP() + 1/minPoints;
-//                                            double new_kylp;
-//                                            if (kylp > 1){
-//                                                new_kylp = 1;
-//                                            }else{
-//                                                new_kylp = kylp;
-//                                            }
-//                                            pk.setYLP(new_kylp);
-//                                            if(pk.isNoise()){
-//                                                RemoveNoise(pk);
-//                                                ArrayList<Point> pk_neighbors = NeighborPoints(pk);
-//                                                for (Point ph : pk_neighbors){
-//                                                    ArrayList<Point> tmp = noise_neighbors.get(ph.getId());
-//                                                    tmp.remove(pk);
-//                                                    noise_neighbors.put(ph.getId(), tmp);
-//                                                }
-//                                            }
-//                                        }
-//                                    }
-//                                    for (Point pl : pi_neighbors) {
-//                                        if (pi.getDistanceFrom(pl) > eps){
-//                                            pl.setYLP(pl.getYLP() - 1/minPoints);
-//                                            ArrayList<Point> tmp = noise_neighbors.get(pl.getId());
-//                                            tmp.remove(pi);
-//                                            noise_neighbors.put(pl.getId(), tmp);
-//                                        }
-//                                    }
-//                                    RemoveNoise(pi);
-//                                    repeatTimes--;
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//                // change pj status
-//                pj.setLabelCore();
-//                pj.setYLP(1);
-//                if(pj.isNoise()) {
-//                    RemoveNoise(pj);
-//                }
-//                nonCore.remove(pj);
-//            }
-//            else // no sufficient noises retain
-//            {
-//                // for each noise point pi in cell ui
-//                // make them part of the already core cell
-//                // find uk with minimum distance between ui and uk
-//                // fix the noise point to k
-//                // get rid of the noise point
-//                while(Noise.size()!=0){
-//                    Point pi=Noise.get(0);
-//                    int [] ui_ij;
-//                    ui_ij=pi.getGrid(minX, minY);
-//                    int [] uk_ij;
-//                    uk_ij=grid.calculateNearestNonNoiseCell(ui_ij[0], ui_ij[1]);
-//                    Cell uk = grid.getCell(uk_ij[0], uk_ij[1]);
-//                    for(Point pk : uk.getList())
-//                    {
-//                        if(!pk.isNoise())
-//                        {
-//                            pi.setLabelBorder();
-//                            pi.setX(pk.getX());
-//                            pi.setY(pk.getY());
-//                            pi.setCluster(pk.getCluster());
-//                            break;
-//                        }
-//                    }
-//                    RemoveNoise(pi);
-//                }
-//            }
-//        }
-//    }
+    // new qdorc (based on pseudocode)
+    public void qdorc(){
+        // sort the pt lists
+        if(Noise.size() != 0){
+            Noise.sort(null);
+        }
+        if(Border.size() != 0){
+            Border.sort(null);
+        }
+        // combined noise and border as noncore
+        ArrayList<Point> nonCore = new ArrayList<>(Noise);
+        nonCore.addAll(Border);
+        if(nonCore.size() != 0){
+            nonCore.sort(null);
+        }
+        // gdorc algorithm here: algorithm 2 in paper
+        // repair while noise points exist
+        // debug: System.out.println("Noise size:" + Noise.size());
+        while (Noise.size()!=0)
+        {
+            // since sorted, can get point pj in uj with maximum yj and yj < 1
+            Point pj = nonCore.get(nonCore.size()-1);
+            int [] uj_ij = pj.getGrid(minX, minY);
+            Cell uj = grid.getCell(uj_ij[0], uj_ij[1]);
+            ArrayList<Point> pj_noise_neighbors = noise_neighbors.get(pj.getId());
+            // debug: System.out.println("pj noise neighbors:" + pj_noise_neighbors.size());
+            if((Noise.size()-pj_noise_neighbors.size()) >= (1-pj.getYLP())*minPoints)
+            {
+                // pseudocode
+                int repeatTimes=(int) (((1-pj.getYLP())*minPoints) + pj_noise_neighbors.size());
+                // debug: System.out.println("repeat times: " + repeatTimes);
+                // int repeatTimes=(int) ((1-pj.getYLP())*minPoints);
+                // enough to make it a core
+                // find the nearest noise cell ui to uj
+                // find the noise point pi in ui
+                while(repeatTimes>0)
+                {
+                    // currently here
+                    // find the nearest noise cell
+                    int [] ui_ij = grid.calculateNearestNoiseCell(uj_ij[0], uj_ij[1]);
+                    if(grid.hasCell(ui_ij[0], ui_ij[1]))
+                    {
+                        Cell ui=grid.getCell(ui_ij[0], ui_ij[1]);
+//                        int ikey = ui_ij[0] * (grid.getNcols() + 1) + ui_ij[1];
+//                        // gets all the noise points in the noise cell
+//                        ArrayList<Point> pis = cell_noise_points.get(ikey);
+                        List<Point> pis = ui.getList();
+                        for(Point pi : pis)
+                        {
+                            if (pi.isNoise()){
+                                if (pj.getDistanceFrom(pi) > eps){
+                                    // repair pi to pj
+                                    pi.setCluster(pj.getCluster());
+                                    pi.setLabelCore();
+                                    pi.setX(pj.getX());
+                                    pi.setY(pj.getY());
+                                    ArrayList<Point> pj_neighbors = NeighborPoints(pj);
+                                    ArrayList<Point> pi_neighbors = NeighborPoints(pi);
+                                    for (Point pk : pj_neighbors){
+                                        if (pi.getDistanceFrom(pk) > eps){
+                                            double kylp = pk.getYLP() + 1/minPoints;
+                                            double new_kylp;
+                                            if (kylp > 1){
+                                                new_kylp = 1;
+                                            }else{
+                                                new_kylp = kylp;
+                                            }
+                                            pk.setYLP(new_kylp);
+                                            if(pk.isNoise()){
+                                                RemoveNoise(pk);
+                                                ArrayList<Point> pk_neighbors = NeighborPoints(pk);
+                                                for (Point ph : pk_neighbors){
+                                                    ArrayList<Point> tmp = noise_neighbors.get(ph.getId());
+                                                    tmp.remove(pk);
+                                                    noise_neighbors.put(ph.getId(), tmp);
+                                                }
+                                            }
+                                        }
+                                    }
+                                    for (Point pl : pi_neighbors) {
+                                        if (pi.getDistanceFrom(pl) > eps){
+                                            pl.setYLP(pl.getYLP() - 1/minPoints);
+                                            ArrayList<Point> tmp = noise_neighbors.get(pl.getId());
+                                            tmp.remove(pi);
+                                            noise_neighbors.put(pl.getId(), tmp);
+                                        }
+                                    }
+                                    RemoveNoise(pi);
+                                    repeatTimes--;
+                                }
+                            }
+                        }
+                    }
+                }
+                // change pj status
+                pj.setLabelCore();
+                pj.setYLP(1);
+                if(pj.isNoise()) {
+                    RemoveNoise(pj);
+                }
+                nonCore.remove(pj);
+            }
+            else // no sufficient noises retain
+            {
+                // for each noise point pi in cell ui
+                // make them part of the already core cell
+                // find uk with minimum distance between ui and uk
+                // fix the noise point to k
+                // get rid of the noise point
+                while(Noise.size()!=0){
+                    Point pi=Noise.get(0);
+                    int [] ui_ij;
+                    ui_ij=pi.getGrid(minX, minY);
+                    int [] uk_ij;
+                    uk_ij=grid.calculateNearestNonNoiseCell(ui_ij[0], ui_ij[1]);
+                    Cell uk = grid.getCell(uk_ij[0], uk_ij[1]);
+                    for(Point pk : uk.getList())
+                    {
+                        if(!pk.isNoise())
+                        {
+                            pi.setLabelBorder();
+                            pi.setX(pk.getX());
+                            pi.setY(pk.getY());
+                            pi.setCluster(pk.getCluster());
+                            break;
+                        }
+                    }
+                    RemoveNoise(pi);
+                }
+            }
+        }
+    }
 
     public void log(String path){
         LogWriter repairLog = new LogWriter(path);

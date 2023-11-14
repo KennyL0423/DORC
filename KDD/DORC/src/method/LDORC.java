@@ -23,7 +23,7 @@ public class LDORC {
         this.eps = eps;
         this.tau = eps/5;
         initialize();
-        run();
+        newrun();
     }
 
     private void initialize(){

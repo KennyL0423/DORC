@@ -18,8 +18,10 @@ public class QDORC {
         pointArray = new ArrayList<DORCStruct>();
         this.eta = eta;
         this.eps = eps;
-        originalInitialize();
-        originalRun();
+//        originalInitialize();
+//        originalRun();
+        initialize();
+        run();
     }
 
     private void initialize(){
