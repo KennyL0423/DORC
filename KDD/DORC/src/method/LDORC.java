@@ -70,8 +70,9 @@ public class LDORC {
                 for(Leader leader : leaders){
                     if(Point.getDistance(leader.leader, dorc.p) <= this.eps - tau){
                         for(Point followers : leader.followers)
-                            if(followers.state == Point.NOISE)
+                            if(followers.state == Point.NOISE) {
                                 followers.state = Point.EDGE;
+                            }
                     }
                 }
             }else{
@@ -201,14 +202,30 @@ public class LDORC {
             DORCStruct dorc = unvisitedArray.get(unvisitedArray.size()-1);
             dorc.state = DORCStruct.VISITED;
             unvisitedArray.remove(unvisitedArray.size()-1);
-
-            if (noiseArray.size()>=(1-dorc.y)*eta) {
+            int self_noise = 0;
+            if(noiseArray.contains(dorc)){
+                self_noise = 1;
+            }
+            // TODO: 需要排除目前已经是neighbor的noise
+            int noise_neighbor_cnt = 0;
+            for( DORCStruct noise: noiseArray){
+                if(dorc.p.id == noise.p.id){
+                    continue;
+                }
+                if(Point.getDistance(dorc.p, noise.p) <= this.eps - tau){
+                    noise_neighbor_cnt++;
+                }
+            }
+            if (noiseArray.size() - self_noise - noise_neighbor_cnt>=(1-dorc.y)*eta) {
                 for (int k=0; k<(1-dorc.y)*eta; k++) {
                     // find point p_i in noise set with the minimum distance
                     double minv = Double.MAX_VALUE;
                     DORCStruct minDORC = null;
                     for (DORCStruct d : noiseArray) {
                         if (Point.getDistance(dorc.p, d.p) < minv) {
+                            if(dorc.p.id == d.p.id){
+                                continue;
+                            }
                             minv = Point.getDistance(dorc.p, d.p);
                             minDORC = d;
                         }
@@ -223,9 +240,11 @@ public class LDORC {
                 // update status of p_j
                 dorc.y = 1;
                 noiseArray.remove(dorc);
+                // change the neighbors of dorc to core or edge as well
                 for (int i=0; i<n; i++)
                     if (Point.getDistance(dorc.p, Dataset.dataset.get(i))<=eps)
                         noiseArray.remove(Dataset.dataset.get(i));
+                        // why does not fix state
             }
             else{
                 Iterator<DORCStruct> iterator = noiseArray.iterator();

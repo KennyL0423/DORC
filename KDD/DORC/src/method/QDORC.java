@@ -42,7 +42,6 @@ public class QDORC {
             if (dorc.p.state == Point.CORE) dorc.hasVisitedNeighbor=true;
             pointArray.add(dorc);
         }
-
         for (DORCStruct dorc : pointArray){
             if (dorc.p.state==Point.NOISE) {
                 for (int k = 0; k < n; k++) {
@@ -87,7 +86,6 @@ public class QDORC {
                 return 0;
             }
         });
-
         // QDORC begins
         while (noiseArray.size()>0){
             // get the point p_j with the maximum y

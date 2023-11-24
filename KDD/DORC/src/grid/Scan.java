@@ -31,7 +31,7 @@ public abstract class Scan {
         int id = 0;
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String[] attr = null;
-//            line = br.readLine(); //remove header
+            line = br.readLine(); //remove header
             while ((line = br.readLine()) != null) {
                 attr = line.split("\t");
                 points.add(new Point(id++, Double.parseDouble(attr[1]), Double.parseDouble(attr[2])));
