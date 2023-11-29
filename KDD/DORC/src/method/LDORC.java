@@ -81,7 +81,6 @@ public class LDORC {
                 }
             }
         }
-
         for (DORCStruct dorc: pointArray){
             if (dorc.p.state==Point.CORE) dorc.state=DORCStruct.VISITED;
             else dorc.state=DORCStruct.NOTVISITED;
@@ -186,7 +185,6 @@ public class LDORC {
             }
             if (dorc.p.state == Point.EDGE) unvisitedArray.add(dorc);
         }
-        System.out.println(noiseArray.size());
         // sort unvisitedArray by value y
         Collections.sort(unvisitedArray, new Comparator<DORCStruct>() {
             @Override
@@ -244,7 +242,6 @@ public class LDORC {
                 for (int i=0; i<n; i++)
                     if (Point.getDistance(dorc.p, Dataset.dataset.get(i))<=eps)
                         noiseArray.remove(Dataset.dataset.get(i));
-                        // why does not fix state
             }
             else{
                 Iterator<DORCStruct> iterator = noiseArray.iterator();
