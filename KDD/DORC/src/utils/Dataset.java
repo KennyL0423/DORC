@@ -14,7 +14,7 @@ public class Dataset {
         try {
             BufferedReader br =new BufferedReader(new FileReader(file));
             String str = "";
-//            String line = br.readLine(); //remove header
+            String line = br.readLine(); //remove header
             int id = 0;
             while((str = br.readLine()) != null){
                 String[] tmp = str.split("\t");

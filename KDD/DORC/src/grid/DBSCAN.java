@@ -42,25 +42,25 @@ public class DBSCAN extends Scan {
      * the point is marked as a Noise.
      */
     public void scan() {
-//        for (Point p : points) {
-//            if (p.isUndefined()) { //point is unclassified
-//                HashSet<Point> neighbours = regionQuery(p);
-//                if ((neighbours.size() + 1) < minPoints) { //+1 because we are ignoring the current point
-//                    p.setLabelNoise();
-//                } else {
-//                    Cluster cluster = new Cluster(clusterCounter++);
-//                    p.setLabelCore();
-//                    p.setCluster(cluster.getId());
-//                    cluster.addPoint(p);
-//                    clusters.add(expandCluster(p, neighbours, cluster));
-//                }
-//            }
-//        }
-//        Iterator<Point> it = points.iterator();
-//        while(it.hasNext()){
-//            Point p = it.next();
-//            if (p.isNoise()) it.remove();
-//        }
+        for (Point p : points) {
+            if (p.isUndefined()) { //point is unclassified
+                HashSet<Point> neighbours = regionQuery(p);
+                if ((neighbours.size() + 1) < minPoints) { //+1 because we are ignoring the current point
+                    p.setLabelNoise();
+                } else {
+                    Cluster cluster = new Cluster(clusterCounter++);
+                    p.setLabelCore();
+                    p.setCluster(cluster.getId());
+                    cluster.addPoint(p);
+                    clusters.add(expandCluster(p, neighbours, cluster));
+                }
+            }
+        }
+        Iterator<Point> it = points.iterator();
+        while(it.hasNext()){
+            Point p = it.next();
+            if (p.isNoise()) it.remove();
+        }
         for (Point p:points){
             HashSet<Point> neighbours = regionQuery(p);
             if ((neighbours.size() + 1) < minPoints)

@@ -206,7 +206,7 @@ public class LDORC {
             if(noiseArray.contains(dorc)){
                 self_noise = 1;
             }
-            // TODO: 需要排除目前已经是neighbor的noise
+            // 需要排除目前已经是neighbor的noise
             int noise_neighbor_cnt = 0;
             for( DORCStruct noise: noiseArray){
                 if(dorc.p.id == noise.p.id){

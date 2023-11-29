@@ -66,7 +66,6 @@ public class QDORC {
     public void run(){
         ArrayList<DORCStruct> noiseArray = new ArrayList<DORCStruct>();
         ArrayList<DORCStruct> unvisitedArray = new ArrayList<DORCStruct>();
-
         // update noise array and unvisited array
         for (DORCStruct dorc : pointArray){
             if (dorc.p.state == Point.NOISE){
@@ -92,8 +91,21 @@ public class QDORC {
             DORCStruct dorc = unvisitedArray.get(unvisitedArray.size()-1);
             dorc.state = DORCStruct.VISITED;
             unvisitedArray.remove(unvisitedArray.size()-1);
-
-            if (noiseArray.size()>=(1-dorc.y)*eta) {
+            int self_noise = 0;
+            if(noiseArray.contains(dorc)){
+                self_noise = 1;
+            }
+            // 需要排除目前已经是neighbor的noise
+            int noise_neighbor_cnt = 0;
+            for( DORCStruct noise: noiseArray){
+                if(dorc.p.id == noise.p.id){
+                    continue;
+                }
+                if(Point.getDistance(dorc.p, noise.p) <= eps){
+                    noise_neighbor_cnt++;
+                }
+            }
+            if (noiseArray.size() - self_noise - noise_neighbor_cnt>=(1-dorc.y)*eta) {
                 for (int k=0; k<(1-dorc.y)*eta; k++) {
                     // find point p_i in noise set with the minimum distance
                     double minv = Double.MAX_VALUE;
