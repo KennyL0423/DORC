@@ -11,15 +11,32 @@
   <component name="ChangeListManager">
     <list default="true" id="59aacb17-717b-4140-b88c-5f7a5337ea0f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/grid/GDORC.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/grid/GDORC.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/grid/Scan.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/grid/Scan.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DORC/main/Entrance.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/main/Entrance.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputdataly/selectedRealOut/DBSCAN_time.txt" beforeDir="false" afterPath="$PROJECT_DIR$/outputdataly/selectedRealOut/DBSCAN_time.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/method/LDORC$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/method/LDORC$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/method/LDORC$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/method/LDORC$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/method/LDORC$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/method/LDORC$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/method/LDORC$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/method/LDORC$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/method/LDORC$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/method/LDORC$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/method/LDORC.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/method/LDORC.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/utils/Dataset.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/utils/Dataset.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/outputdataly/selectedRealOut/GDORC_time.txt" beforeDir="false" afterPath="$PROJECT_DIR$/outputdataly/selectedRealOut/GDORC_time.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/outputdataly/selectedRealOut/LDORC_time.txt" beforeDir="false" afterPath="$PROJECT_DIR$/outputdataly/selectedRealOut/LDORC_time.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputdataly/selectedRealOut/QDORC_time.txt" beforeDir="false" afterPath="$PROJECT_DIR$/outputdataly/selectedRealOut/QDORC_time.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputdataly/updateExample/DBSCAN/eta=6_eps=15/DBSCAN_time.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputdataly/updateExample/DBSCAN/eta=8_eps=20/DBSCAN_time.txt" beforeDir="false" afterPath="$PROJECT_DIR$/outputdataly/updateExample/DBSCAN/eta=8_eps=20/DBSCAN_time.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputdataly/updateExample/GDORC/eta=6_eps=15/GDORC_time.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputdataly/updateExample/GDORC/eta=8_eps=20/GDORC_time.txt" beforeDir="false" afterPath="$PROJECT_DIR$/outputdataly/updateExample/GDORC/eta=8_eps=20/GDORC_time.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputdataly/updateExample/LDORC/eta=6_eps=15/LDORC_time.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputdataly/updateExample/LDORC/eta=8_eps=20/LDORC_time.txt" beforeDir="false" afterPath="$PROJECT_DIR$/outputdataly/updateExample/LDORC/eta=8_eps=20/LDORC_time.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputdataly/updateExample/QDORC/eta=6_eps=15/QDORC_time.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputdataly/updateExample/QDORC/eta=8_eps=20/QDORC_time.txt" beforeDir="false" afterPath="$PROJECT_DIR$/outputdataly/updateExample/QDORC/eta=8_eps=20/QDORC_time.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grid/GDORC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid/GDORC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grid/Scan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid/Scan.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Entrance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Entrance.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/method/LDORC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/method/LDORC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Leader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Leader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Dataset.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Dataset.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,16 +237,6 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/method/LDORC.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/method/LDORC.java</url>
-          <line>325</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>

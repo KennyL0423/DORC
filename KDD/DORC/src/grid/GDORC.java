@@ -1,6 +1,8 @@
 package grid;
 
 import java.util.*;
+
+import utils.DORCStruct;
 import utils.LogWriter;
 
 public class GDORC extends Scan {
@@ -51,8 +53,11 @@ public class GDORC extends Scan {
         cell_noise_points = new HashMap<>();
         // preparations
         readData(filename);
+        System.out.println("finish read");
         scan(); // initialization of the gdorc algorithm
+        System.out.println("finish scan");
         qdorc();    // gdorc is built upon qdorc
+        System.out.println("finishi dorc");
 
     }
 
@@ -418,25 +423,34 @@ public class GDORC extends Scan {
         // combined noise and border as noncore
         ArrayList<Point> nonCore = new ArrayList<>(Noise);
         nonCore.addAll(Border);
-        if(nonCore.size() != 0){
-            nonCore.sort(null);
-        }
+        Collections.sort(nonCore, new Comparator<Point>(){
+            @Override
+            public int compare(Point o1, Point o2) {
+                if(o1.getYLP() < o2.getYLP())
+                    return -1;
+                if(o1.getYLP() > o2.getYLP())
+                    return 1;
+                return 0;
+            }
+        });
         // gdorc algorithm here: algorithm 2 in paper
         // repair while noise points exist
-        // debug: System.out.println("Noise size:" + Noise.size());
+//        System.out.println("dorc init done!");
         while (Noise.size()!=0)
         {
             // since sorted, can get point pj in uj with maximum yj and yj < 1
+//            System.out.println("Noise size:" + Noise.size());
             Point pj = nonCore.get(nonCore.size()-1);
             int [] uj_ij = pj.getGrid(minX, minY);
             Cell uj = grid.getCell(uj_ij[0], uj_ij[1]);
             ArrayList<Point> pj_noise_neighbors = noise_neighbors.get(pj.getId());
-            // debug: System.out.println("pj noise neighbors:" + pj_noise_neighbors.size());
+//            System.out.println("pj noise neighbors:" + pj_noise_neighbors.size());
+//            System.out.println("need to fix: " + (1-pj.getYLP())*minPoints);
             if((Noise.size()-pj_noise_neighbors.size()) >= (1-pj.getYLP())*minPoints)
             {
                 // pseudocode
                 int repeatTimes=(int) (((1-pj.getYLP())*minPoints) + pj_noise_neighbors.size());
-                // debug: System.out.println("repeat times: " + repeatTimes);
+                 System.out.println("repeat times: " + repeatTimes);
                 // int repeatTimes=(int) ((1-pj.getYLP())*minPoints);
                 // enough to make it a core
                 // find the nearest noise cell ui to uj
@@ -496,6 +510,8 @@ public class GDORC extends Scan {
                                     RemoveNoise(pi);
                                     repeatTimes--;
                                 }
+                                repeatTimes--;
+                                RemoveNoise(pi);
                             }
                         }
                     }
