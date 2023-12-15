@@ -144,7 +144,6 @@ public class QDORC {
                                 minDORC = d2;
                             }
                     }
-
                     // move d1 to minDORC
                     d1.redirectPoint = minDORC.p;
                     iterator.remove();

@@ -53,11 +53,11 @@ public class GDORC extends Scan {
         cell_noise_points = new HashMap<>();
         // preparations
         readData(filename);
-        System.out.println("finish read");
+//        System.out.println("finish read");
         scan(); // initialization of the gdorc algorithm
-        System.out.println("finish scan");
+//        System.out.println("finish scan");
         qdorc();    // gdorc is built upon qdorc
-        System.out.println("finishi dorc");
+//        System.out.println("finishi dorc");
 
     }
 
@@ -449,8 +449,9 @@ public class GDORC extends Scan {
             if((Noise.size()-pj_noise_neighbors.size()) >= (1-pj.getYLP())*minPoints)
             {
                 // pseudocode
-                int repeatTimes=(int) (((1-pj.getYLP())*minPoints) + pj_noise_neighbors.size());
-                 System.out.println("repeat times: " + repeatTimes);
+//                int repeatTimes=(int) (((1-pj.getYLP())*minPoints) + pj_noise_neighbors.size());
+//                 System.out.println("repeat times: " + repeatTimes);
+                int repeatTimes=(int) ((1-pj.getYLP())*minPoints);
                 // int repeatTimes=(int) ((1-pj.getYLP())*minPoints);
                 // enough to make it a core
                 // find the nearest noise cell ui to uj
@@ -471,11 +472,6 @@ public class GDORC extends Scan {
                         {
                             if (pi.isNoise()){
                                 if (pj.getDistanceFrom(pi) > eps){
-                                    // repair pi to pj
-                                    pi.setCluster(pj.getCluster());
-                                    pi.setLabelCore();
-                                    pi.setX(pj.getX());
-                                    pi.setY(pj.getY());
                                     ArrayList<Point> pj_neighbors = NeighborPoints(pj);
                                     ArrayList<Point> pi_neighbors = NeighborPoints(pi);
                                     for (Point pk : pj_neighbors){
@@ -488,15 +484,6 @@ public class GDORC extends Scan {
                                                 new_kylp = kylp;
                                             }
                                             pk.setYLP(new_kylp);
-                                            if(pk.isNoise()){
-                                                RemoveNoise(pk);
-                                                ArrayList<Point> pk_neighbors = NeighborPoints(pk);
-                                                for (Point ph : pk_neighbors){
-                                                    ArrayList<Point> tmp = noise_neighbors.get(ph.getId());
-                                                    tmp.remove(pk);
-                                                    noise_neighbors.put(ph.getId(), tmp);
-                                                }
-                                            }
                                         }
                                     }
                                     for (Point pl : pi_neighbors) {
@@ -507,6 +494,11 @@ public class GDORC extends Scan {
                                             noise_neighbors.put(pl.getId(), tmp);
                                         }
                                     }
+                                    // repair pi to pj
+                                    pi.setCluster(pj.getCluster());
+                                    pi.setLabelCore();
+                                    pi.setX(pj.getX());
+                                    pi.setY(pj.getY());
                                     RemoveNoise(pi);
                                     repeatTimes--;
                                 }
@@ -523,6 +515,18 @@ public class GDORC extends Scan {
                     RemoveNoise(pj);
                 }
                 nonCore.remove(pj);
+                ArrayList<Point> pj_neighbors = NeighborPoints(pj);
+                for (Point pk : pj_neighbors){
+                    if(pk.isNoise()){
+                        RemoveNoise(pk);
+                        ArrayList<Point> pk_neighbors = NeighborPoints(pk);
+                        for (Point ph : pk_neighbors){
+                            ArrayList<Point> tmp = noise_neighbors.get(ph.getId());
+                            tmp.remove(pk);
+                            noise_neighbors.put(ph.getId(), tmp);
+                        }
+                    }
+                }
             }
             else // no sufficient noises retain
             {
