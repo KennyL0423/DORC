@@ -54,9 +54,15 @@ public class GDORC extends Scan {
         // preparations
         readData(filename);
 //        System.out.println("finish read");
+//        startTime = System.currentTimeMillis();
         scan(); // initialization of the gdorc algorithm
+//        endTime = System.currentTimeMillis();
+//        System.out.println((endTime-startTime)/1000.0);
 //        System.out.println("finish scan");
+//        startTime = System.currentTimeMillis();
         qdorc();    // gdorc is built upon qdorc
+//        endTime = System.currentTimeMillis();
+//        System.out.println((endTime-startTime)/1000.0);
 //        System.out.println("finishi dorc");
 
     }
@@ -94,6 +100,7 @@ public class GDORC extends Scan {
     }
 
     private void determineCorePoints() {
+        System.out.println(grid.grid.keySet().size());
         for (int key:grid.grid.keySet()){   // traversing all cells
             int i = key/(grid.ncols+1); // rownum
             int j = key%(grid.ncols+1); // colnum
@@ -111,7 +118,6 @@ public class GDORC extends Scan {
                     // for every point, calculate for neighboring cells
                     // a little bit time-consuming since there can be more than one point in the same cell that share the info
                     // consider maintain a neighboring cell list for each cell
-                    // TODO: if we can get rid of redundancy
                     List<Cell> nCells = grid.calculateNeighboringCells(i, j); //compute the cells within eps distance that can provide possible neighbor points
                     if (nCells.isEmpty()) {
                         continue;
@@ -413,6 +419,7 @@ public class GDORC extends Scan {
 
     // new qdorc (based on pseudocode)
     public void qdorc(){
+        startTime = System.currentTimeMillis();
         // sort the pt lists
         if(Noise.size() != 0){
             Noise.sort(null);
@@ -433,6 +440,8 @@ public class GDORC extends Scan {
                 return 0;
             }
         });
+        endTime = System.currentTimeMillis();
+        System.out.println((endTime-startTime)/1000.0);
         // gdorc algorithm here: algorithm 2 in paper
         // repair while noise points exist
 //        System.out.println("dorc init done!");
@@ -449,9 +458,9 @@ public class GDORC extends Scan {
             if((Noise.size()-pj_noise_neighbors.size()) >= (1-pj.getYLP())*minPoints)
             {
                 // pseudocode
-//                int repeatTimes=(int) (((1-pj.getYLP())*minPoints) + pj_noise_neighbors.size());
+                int repeatTimes=(int) (((1-pj.getYLP())*minPoints) + pj_noise_neighbors.size());
 //                 System.out.println("repeat times: " + repeatTimes);
-                int repeatTimes=(int) ((1-pj.getYLP())*minPoints);
+//                int repeatTimes=(int) ((1-pj.getYLP())*minPoints);
                 // int repeatTimes=(int) ((1-pj.getYLP())*minPoints);
                 // enough to make it a core
                 // find the nearest noise cell ui to uj
@@ -487,7 +496,7 @@ public class GDORC extends Scan {
                                         }
                                     }
                                     for (Point pl : pi_neighbors) {
-                                        if (pi.getDistanceFrom(pl) > eps){
+                                        if (pj.getDistanceFrom(pl) > eps){
                                             pl.setYLP(pl.getYLP() - 1/minPoints);
                                             ArrayList<Point> tmp = noise_neighbors.get(pl.getId());
                                             tmp.remove(pi);
@@ -502,8 +511,8 @@ public class GDORC extends Scan {
                                     RemoveNoise(pi);
                                     repeatTimes--;
                                 }
-                                repeatTimes--;
                                 RemoveNoise(pi);
+                                repeatTimes--;
                             }
                         }
                     }
