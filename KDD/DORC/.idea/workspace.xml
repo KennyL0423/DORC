@@ -11,6 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="59aacb17-717b-4140-b88c-5f7a5337ea0f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/grid/GDORC$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/grid/GDORC$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DORC/grid/GDORC.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/grid/GDORC.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DORC/main/Entrance.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/main/Entrance.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/grid/GDORC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid/GDORC.java" afterDir="false" />
@@ -215,6 +216,16 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/grid/GDORC.java</url>
+          <line>463</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/grid/GDORC.java</url>
+          <line>446</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
@@ -227,14 +238,5 @@
         <PinnedItemInfo parentTag="utils.DORCStruct" memberName="c" />
       </pinned-members>
     </pin-to-top-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="dorc" />
-        <watch expression="leaders.get(4)" />
-        <watch expression="((HashMap.Node)leader_followers.entrySet().toArray()[4]).getKey()" custom="java.util.HashMap.Node" />
-        <watch expression="((HashMap.Node)leader_followers.entrySet().toArray()[4]).getKey()" custom="java.util.HashMap.Node" />
-        <watch expression="leaders.get(10)" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>

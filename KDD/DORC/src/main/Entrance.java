@@ -449,7 +449,7 @@ public class Entrance {
 
 
     public static void debug_gdorc(){
-        GDORC gdorc = new GDORC(8e-5, 8, "./data/updateReal/" + "0.21" + "/noiseData.dat");
+        GDORC gdorc = new GDORC(15, 6, "./data/updateExample/" + "0.21" + "/noiseData.dat");
     }
 
     public static void debug_ldorc(){
