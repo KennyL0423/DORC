@@ -217,7 +217,7 @@ public class Grid {
      * @param j
      * @return a list of neighbor Cells of current cell
      */
-    public int[] calculateNearestNonNoiseCell(int i, int j){
+    public int[] calculateNearNonNoiseCell(int i, int j){
         boolean[][] visited = new boolean[nrows][ncols];
         Queue<Integer> queue = new LinkedList<>();
         int key = i * (ncols + 1) + j;
@@ -253,7 +253,7 @@ public class Grid {
         nc[1] = -1;
         return nc;
     }
-    public int[] calculateNearNonNoiseCell(int i, int j) {
+    public int[] calculateNearestNonNoiseCell(int i, int j) {
 //      similar to calculateNearestNoiseCell
 //      Cell nCell = null;
         int mv=1000000000;

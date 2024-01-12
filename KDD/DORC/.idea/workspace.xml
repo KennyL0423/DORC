@@ -10,16 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59aacb17-717b-4140-b88c-5f7a5337ea0f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DORC/grid/GDORC$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/grid/GDORC$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DORC/grid/GDORC.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/grid/GDORC.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DORC/grid/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/grid/Grid.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DORC/main/Entrance.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/main/Entrance.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grid/GDORC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid/GDORC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/grid/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid/Grid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Entrance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Entrance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/method/LDORC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/method/LDORC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/method/QDORC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/method/QDORC.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
