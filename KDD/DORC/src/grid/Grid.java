@@ -3,10 +3,13 @@ package grid;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class Grid {
 
     public HashMap<Integer, Cell> grid;
+    public HashMap<Cell, Integer> cell_index;
     private double cellWidth;
     public int nrows;
     public static int ncols;
@@ -16,6 +19,7 @@ public class Grid {
     public Grid(double eps) {
         cellWidth = eps / Math.sqrt(2);
         grid = new HashMap<>();
+        cell_index = new HashMap<>();
     }
 
     public Grid(int rows, int cols, double eps) {
@@ -23,6 +27,7 @@ public class Grid {
         nrows = rows;
         ncols = cols;
         grid = new HashMap<>();
+        cell_index = new HashMap<>();
     }
 
     public int getNrows() {
@@ -40,7 +45,7 @@ public class Grid {
      */
     public List<Cell> calculateNeighboringCells(int i, int j) {
         List<Cell> nCells = new ArrayList<>();
-
+        // TODO : avoid self
         for (int row = i - 2; row <= i + 2; row++) {    // traversing rows near this cell
             boolean rowInBounds = (row >= 0) && (row < nrows);  // row index must in grid
             if (rowInBounds) {
@@ -64,6 +69,43 @@ public class Grid {
         return nCells;
     }
 
+    public int[] calculateNearNoiseCell(int i, int j){
+        boolean[][] visited = new boolean[nrows][ncols];
+        Queue<Integer> queue = new LinkedList<>();
+        int key = i * (ncols + 1) + j;
+        queue.add(key);
+        visited[i][j] = true;
+
+        int[] di = {1, -1, 0, 0};
+        int[] dj = {0, 0, 1, -1};
+        int nc[] = new int [2];
+        while(!queue.isEmpty()) {
+            int cur_key = queue.poll();
+            int cur_i = cur_key/(ncols+1); // rownum
+            int cur_j = cur_key%(ncols+1); // colnum
+            if(this.hasCell(cur_i, cur_j)){
+                if(this.getCell(cur_i, cur_j).getNoiseList())
+                {
+                    nc[0] = cur_i;
+                    nc[1] = cur_j;
+                    return nc;
+                }
+            }
+            for (int k=0; k<4; k++){
+                int new_i = cur_i + di[k];
+                int new_j = cur_j + dj[k];
+                if(new_i>=0 && new_i<nrows && new_j>=0 && new_j<ncols && !visited[new_i][new_j]){
+                    int new_key = new_i * (ncols + 1) + new_j;
+                    visited[new_i][new_j] = true;
+                    queue.add(new_key);
+                }
+            }
+        }
+        nc[0] = -1;
+        nc[1] = -1;
+        return nc;
+    }
+
     /**
      *Calculates the nearest noise cell of a cell
      * @param i
@@ -78,6 +120,7 @@ public class Grid {
         int ti=10000;//Integer.MAX_VALUE;
         int tj=10000;//Integer.MAX_VALUE;
         // start from the target and check right
+        // TODO: related with nrows and ncols
         for (int row = i; row <= nrows; row++) {
             // then check for the bottom
             for (int col = j; col <= ncols; col++) {
@@ -174,7 +217,43 @@ public class Grid {
      * @param j
      * @return a list of neighbor Cells of current cell
      */
-    public int[] calculateNearestNonNoiseCell(int i, int j) {
+    public int[] calculateNearestNonNoiseCell(int i, int j){
+        boolean[][] visited = new boolean[nrows][ncols];
+        Queue<Integer> queue = new LinkedList<>();
+        int key = i * (ncols + 1) + j;
+        queue.add(key);
+        visited[i][j] = true;
+
+        int[] di = {1, -1, 0, 0};
+        int[] dj = {0, 0, 1, -1};
+        int nc[] = new int [2];
+        while(!queue.isEmpty()) {
+            int cur_key = queue.poll();
+            int cur_i = cur_key/(ncols+1); // rownum
+            int cur_j = cur_key%(ncols+1); // colnum
+            if(this.hasCell(cur_i, cur_j)){
+                if(this.getCell(cur_i, cur_j).getNonNoiseList())
+                {
+                    nc[0] = cur_i;
+                    nc[1] = cur_j;
+                    return nc;
+                }
+            }
+            for (int k=0; k<4; k++){
+                int new_i = cur_i + di[k];
+                int new_j = cur_j + dj[k];
+                if(new_i>=0 && new_i<nrows && new_j>=0 && new_j<ncols && !visited[new_i][new_j]){
+                    int new_key = new_i * (ncols + 1) + new_j;
+                    visited[new_i][new_j] = true;
+                    queue.add(new_key);
+                }
+            }
+        }
+        nc[0] = -1;
+        nc[1] = -1;
+        return nc;
+    }
+    public int[] calculateNearNonNoiseCell(int i, int j) {
 //      similar to calculateNearestNoiseCell
 //      Cell nCell = null;
         int mv=1000000000;

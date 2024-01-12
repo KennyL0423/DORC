@@ -13,9 +13,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DORC/grid/GDORC$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/grid/GDORC$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DORC/grid/GDORC.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/grid/GDORC.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/grid/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/grid/Grid.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DORC/main/Entrance.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/main/Entrance.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/grid/GDORC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid/GDORC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grid/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid/Grid.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Entrance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Entrance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/method/LDORC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/method/LDORC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/method/QDORC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/method/QDORC.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,15 +55,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/GitHub/DORC/KDD/DORC&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/GitHub/DORC/KDD/DORC",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.Entrance">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
@@ -216,16 +220,6 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/grid/GDORC.java</url>
-          <line>463</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/grid/GDORC.java</url>
-          <line>446</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
@@ -234,6 +228,7 @@
         <PinnedItemInfo parentTag="utils.Point" memberName="x" />
         <PinnedItemInfo parentTag="utils.DORCStruct" memberName="p" />
         <PinnedItemInfo parentTag="utils.Leader" memberName="leader" />
+        <PinnedItemInfo parentTag="grid.Grid" memberName="cell_index" />
         <PinnedItemInfo parentTag="utils.Point" memberName="id" />
         <PinnedItemInfo parentTag="utils.DORCStruct" memberName="c" />
       </pinned-members>

@@ -57,13 +57,11 @@ public class GDORC extends Scan {
         startTime = System.currentTimeMillis();
         scan(); // initialization of the gdorc algorithm
         endTime = System.currentTimeMillis();
-        System.out.println((endTime-startTime)/1000.0);
-//        System.out.println("finish scan");
+        System.out.println("finish scan: " + (endTime-startTime)/1000.0);
         startTime = System.currentTimeMillis();
         qdorc();    // gdorc is built upon qdorc
         endTime = System.currentTimeMillis();
-        System.out.println((endTime-startTime)/1000.0);
-//        System.out.println("finishi dorc");
+        System.out.println("finishi dorc: " + (endTime-startTime)/1000.0);
 
     }
 
@@ -77,7 +75,10 @@ public class GDORC extends Scan {
     // ly version of scan with initialization
     public void scan() {
         // algorithm initialization
+//        startTime = System.currentTimeMillis();
         constructGrid();    // here
+//        endTime = System.currentTimeMillis();
+//        System.out.println((endTime-startTime)/1000.0);
         determineCorePoints();
         DetermineBorderPoint();
         DetermineNoisePoint();
@@ -97,14 +98,19 @@ public class GDORC extends Scan {
             tempy = (int) ((p.getY() - minY) / cellWidth);
             grid.setPointInCell(tempx, tempy, p);   // init points in cell
         }
+        for (HashMap.Entry<Integer, Cell> entry : grid.grid.entrySet()) {
+            if (!entry.getValue().isEmpty())
+            grid.cell_index.put(entry.getValue(), entry.getKey());
+        }
     }
 
     private void determineCorePoints() {
-        System.out.println(grid.grid.keySet().size());
+//        System.out.println(grid.grid.keySet().size());
         for (int key:grid.grid.keySet()){   // traversing all cells
             int i = key/(grid.ncols+1); // rownum
             int j = key%(grid.ncols+1); // colnum
             int cellPoints = grid.getCell(i, j).getList().size();   // get cell points
+            // TODO: core / non-core
             if (cellPoints >= minPoints) { //set all points of cell as Core
                 for (Point p : grid.getCell(i, j).getList()) {
                     p.setLabelCore();
@@ -151,6 +157,7 @@ public class GDORC extends Scan {
 
     private void DetermineBorderPoint() {
 //    	int b=0;
+        // TODO: q?
         for (int key:grid.grid.keySet()){
             int i = key/(grid.ncols+1);
             int j = key%(grid.ncols+1);
@@ -213,7 +220,9 @@ public class GDORC extends Scan {
                 // get the i and j label for cell uj
                 Cell uj = grid.getCell(uj_ij[0], uj_ij[1]);
                 // init noise_cell U(N);
-                noise_cell.add(uj);
+                if(!noise_cell.contains(uj)){
+                    noise_cell.add(uj);
+                }
                 // init cell_noise_pt
                 int key = uj_ij[0] * (grid.getNcols() + 1) + uj_ij[1];
                 if(!cell_noise_points.containsKey(key)){
@@ -326,6 +335,24 @@ public class GDORC extends Scan {
         }
     }
 
+    public int[] calculateNearestNoiseCell(int i, int j){
+        int nc[] = new int [2];
+        int distance = grid.getNcols() + grid.getNrows();
+        for (Cell nCell : noise_cell){
+            int nCell_index = grid.cell_index.get(nCell);
+            int nCell_i = nCell_index/(grid.getNcols()+1); // rownum
+            int nCell_j = nCell_index%(grid.getNcols()+1); // colnum
+            // calculate the relative distance
+            int cur_distance = Math.abs(nCell_i - i) + Math.abs(nCell_j - j);
+            if (cur_distance < distance){
+                distance = cur_distance;
+                nc[0] = nCell_i;
+                nc[1] = nCell_j;
+            }
+        }
+        return nc;
+    }
+
     public void oldqdorc(){
         minX = Double.MAX_VALUE;
         minY = Double.MAX_VALUE;
@@ -420,13 +447,14 @@ public class GDORC extends Scan {
 
     // new qdorc (based on pseudocode)
     public void qdorc(){
+        System.out.println(grid.grid.keySet().size());
         // sort the pt lists
-        if(Noise.size() != 0){
-            Noise.sort(null);
-        }
-        if(Border.size() != 0){
-            Border.sort(null);
-        }
+//        if(Noise.size() != 0){
+//            Noise.sort(null);
+//        }
+//        if(Border.size() != 0){
+//            Border.sort(null);
+//        }
         // combined noise and border as noncore
         ArrayList<Point> nonCore = new ArrayList<>(Noise);
         nonCore.addAll(Border);
@@ -444,12 +472,11 @@ public class GDORC extends Scan {
         // gdorc algorithm here: algorithm 2 in paper
         // repair while noise points exist
 //        System.out.println("dorc init done!");
+        double nearestNoise = 0.0;
+        double nearestNonNoise = 0.0;
         while (Noise.size()!=0)
         {
-//            System.out.println("Noise size: " + Noise.size());
 //            System.out.println("NonCore" + nonCore.size());
-            // since sorted, can get point pj in uj with maximum yj and yj < 1
-//            System.out.println("Noise size:" + Noise.size());
             Point pj = nonCore.get(nonCore.size()-1);
             int [] uj_ij = pj.getGrid(minX, minY);
 //            Cell uj = grid.getCell(uj_ij[0], uj_ij[1]);
@@ -458,16 +485,19 @@ public class GDORC extends Scan {
 //            System.out.println("need to fix: " + (1-pj.getYLP())*minPoints);
             if((Noise.size()-pj_noise_neighbors.size()) >= (1-pj.getYLP())*minPoints) {
 //                System.out.println("needs: " + ((1 - pj.getYLP()) * minPoints + 0.1));
-                int repeatTimes = (int) ((1 - pj.getYLP()) * minPoints + 0.1) + pj_noise_neighbors.size();
-//                System.out.println("repeat times: " + repeatTimes);
+//                int repeatTimes = (int) ((1 - pj.getYLP()) * minPoints + 0.1) + pj_noise_neighbors.size();
+                int repeatTimes = (int)((1-pj.getYLP())*minPoints + 0.1);
                 // enough to make it a core, find the nearest noise cell ui to uj, find the noise point pi in ui
                 while (repeatTimes > 0) {
-                    // currently here
                     // find the nearest noise cell
-                    // TODO: calculateNearestNoiseCell
+//                    startTime = System.currentTimeMillis();
                     int[] ui_ij = grid.calculateNearestNoiseCell(uj_ij[0], uj_ij[1]);
+//                    int[] ui_ij = calculateNearestNoiseCell(uj_ij[0], uj_ij[1]);
+//                    endTime = System.currentTimeMillis();
+//                    nearestNoise += ((endTime-startTime)/1000.0);
                     if (grid.hasCell(ui_ij[0], ui_ij[1])) {
-//                        System.out.println("has nearest noise cell");
+                        System.out.println("GDORC Noise size: " + Noise.size());
+                        startTime = System.currentTimeMillis();
                         Cell ui = grid.getCell(ui_ij[0], ui_ij[1]);
 //                        List<Point> pis = ui.getList();
                         List<Point> pis = ui.getList();
@@ -510,6 +540,8 @@ public class GDORC extends Scan {
                                 if (repeatTimes <= 0) break;
                             }
                         }
+                        endTime = System.currentTimeMillis();
+                        System.out.println("repairing: " + ((endTime-startTime)/1000.0));
 //                        int key = ui_ij[0] * (grid.getNcols() + 1) + ui_ij[1];
 //                        if (cell_noise_points.containsKey(key)) {
 //                            System.out.println("has cell noise points");
@@ -593,7 +625,10 @@ public class GDORC extends Scan {
                     int [] ui_ij;
                     ui_ij=pi.getGrid(minX, minY);
                     int [] uk_ij;
+//                    startTime = System.currentTimeMillis();
                     uk_ij=grid.calculateNearestNonNoiseCell(ui_ij[0], ui_ij[1]);
+//                    endTime = System.currentTimeMillis();
+//                    nearestNonNoise += ((endTime-startTime)/1000.0);
                     Cell uk = grid.getCell(uk_ij[0], uk_ij[1]);
                     for(Point pk : uk.getList())
                     {
@@ -610,6 +645,8 @@ public class GDORC extends Scan {
                 }
             }
         }
+        System.out.println("NearestNoise: " + nearestNoise);
+//        System.out.println("NearestNonNoise: " + nearestNonNoise);
     }
 
     public void log(String path){

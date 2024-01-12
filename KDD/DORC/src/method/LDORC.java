@@ -67,6 +67,7 @@ public class LDORC {
         as representatives of the followers
      */
     private void getEpsilonNeighbor(){
+        System.out.println(leaders.size());
         for(DORCStruct l1 : leaders) {
             for (DORCStruct l2 : leaders) {
                 if(l1.p.id<=l2.p.id) continue;
@@ -224,6 +225,7 @@ public class LDORC {
         });
         // QDORC begins
         while (noiseArray.size()>0){
+            System.out.println("LDORC Noise size: " + noiseArray.size());
             // get the point p_j with the maximum y
             DORCStruct dorc = unvisitedArray.get(unvisitedArray.size()-1);
             dorc.state = DORCStruct.VISITED;
