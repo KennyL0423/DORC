@@ -23,7 +23,8 @@ public class LDORC {
         pointArray = new ArrayList<DORCStruct>();
         this.eta = eta;
         this.eps = eps;
-        this.tau = eps/5;
+//        this.tau = eps/5;
+        this.tau = 0;
         initialize();
         newrun();
     }
@@ -55,7 +56,7 @@ public class LDORC {
                 dorc.c = 1;
             }else{
                 ArrayList<DORCStruct> followerList = leaders_followers.get(l);
-                followerList.add(l);
+                followerList.add(dorc);
                 l.c++;
             }
         }
@@ -205,14 +206,16 @@ public class LDORC {
     public void newrun(){
         ArrayList<DORCStruct> noiseArray = new ArrayList<DORCStruct>();
         ArrayList<DORCStruct> unvisitedArray = new ArrayList<DORCStruct>();
-
+        ArrayList<DORCStruct> coreArray = new ArrayList<>();
         // update noise array and unvisited array
+        System.out.println("point array size: " + pointArray.size());
         for (DORCStruct dorc : pointArray){
             if (dorc.p.state == Point.NOISE){
                 noiseArray.add(dorc);
                 unvisitedArray.add(dorc);
             }
             if (dorc.p.state == Point.EDGE) unvisitedArray.add(dorc);
+            if(dorc.p.state == Point.CORE) coreArray.add(dorc);
         }
         // sort unvisitedArray by value y
         Collections.sort(unvisitedArray, new Comparator<DORCStruct>() {
@@ -223,9 +226,11 @@ public class LDORC {
                 return 0;
             }
         });
+        System.out.println("LDORC Noise size: " + noiseArray.size());
+        System.out.println("LDORC Border size: " + (unvisitedArray.size()-noiseArray.size()));
+        System.out.println("LDORC Core size: " + coreArray.size());
         // QDORC begins
         while (noiseArray.size()>0){
-            System.out.println("LDORC Noise size: " + noiseArray.size());
             // get the point p_j with the maximum y
             DORCStruct dorc = unvisitedArray.get(unvisitedArray.size()-1);
             dorc.state = DORCStruct.VISITED;

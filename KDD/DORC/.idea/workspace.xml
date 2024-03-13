@@ -10,7 +10,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59aacb17-717b-4140-b88c-5f7a5337ea0f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/grid/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid/Grid.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/grid/GDORC.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/grid/GDORC.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/grid/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/grid/Grid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/main/Entrance.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/main/Entrance.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/method/LDORC$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/method/LDORC$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/method/LDORC$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/method/LDORC$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/method/LDORC$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/method/LDORC$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/method/LDORC$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/method/LDORC$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DORC/method/LDORC.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DORC/method/LDORC.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputdataly/foursquare_once/dirty_rate=0.10/GDORC/GDORC_time.txt" beforeDir="false" afterPath="$PROJECT_DIR$/outputdataly/foursquare_once/dirty_rate=0.10/GDORC/GDORC_time.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputdataly/foursquare_once/dirty_rate=0.10/LDORC/LDORC_time.txt" beforeDir="false" afterPath="$PROJECT_DIR$/outputdataly/foursquare_once/dirty_rate=0.10/LDORC/LDORC_time.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputdataly/foursquare_once/dirty_rate=0.10_eta/GDORC/GDORC_time.txt" beforeDir="false" afterPath="$PROJECT_DIR$/outputdataly/foursquare_once/dirty_rate=0.10_eta/GDORC/GDORC_time.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputdataly/foursquare_once/dirty_rate=0.10_eta/LDORC/LDORC_time.txt" beforeDir="false" afterPath="$PROJECT_DIR$/outputdataly/foursquare_once/dirty_rate=0.10_eta/LDORC/LDORC_time.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grid/GDORC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid/GDORC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Entrance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Entrance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/method/LDORC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/method/LDORC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/KDD/evaluation/Benchmark.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/KDD/evaluation/Benchmark.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/KDD/grid/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/KDD/grid/Cell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/KDD/grid/DBSCAN.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/KDD/grid/DBSCAN.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/KDD/grid/GDORC.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/KDD/grid/GDORC.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/KDD/grid/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/KDD/grid/Grid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/KDD/main/Entrance.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/KDD/main/Entrance.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/KDD/method/LDORC$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/KDD/method/LDORC$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/KDD/method/LDORC$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/KDD/method/LDORC$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/KDD/method/LDORC$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/KDD/method/LDORC$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/KDD/method/LDORC$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/KDD/method/LDORC$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/KDD/method/LDORC.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/KDD/method/LDORC.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/KDD/method/QDORC$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/KDD/method/QDORC$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/KDD/method/QDORC$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/KDD/method/QDORC$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/KDD/method/QDORC$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/KDD/method/QDORC$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/KDD/method/QDORC.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/KDD/method/QDORC.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/KDD/utils/Dataset.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/KDD/utils/Dataset.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/KDD/utils/Leader.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/KDD/utils/Leader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/KDD/utils/LogWriter.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/KDD/utils/LogWriter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/KDD/utils/Point.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/KDD/utils/Point.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +87,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "D:/GitHub/DORC/KDD/DORC",
+    "settings.editor.selected.configurable": "preferences.general",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
