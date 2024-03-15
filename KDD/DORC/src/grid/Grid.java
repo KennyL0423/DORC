@@ -96,36 +96,36 @@ public class Grid {
     }
 
     public int[] calculateNearestNoiseCell(int i, int j) {
-        // Ê¹ÓÃ¶ÓÁÐÖ§³ÖBFS
+        // Ê¹ï¿½Ã¶ï¿½ï¿½ï¿½Ö§ï¿½ï¿½BFS
         Queue<int[]> queue = new LinkedList<>();
-        boolean[][] visited = new boolean[nrows][ncols]; // ¼ÇÂ¼ÒÑ·ÃÎÊµÄµ¥Ôª¸ñ
+        boolean[][] visited = new boolean[nrows][ncols]; // ï¿½ï¿½Â¼ï¿½Ñ·ï¿½ï¿½ÊµÄµï¿½Ôªï¿½ï¿½
 
-        queue.offer(new int[]{i, j}); // ³õÊ¼µ¥Ôª¸ñÈë¶Ó
-        visited[i][j] = true; // ±ê¼ÇÎªÒÑ·ÃÎÊ
+        queue.offer(new int[]{i, j}); // ï¿½ï¿½Ê¼ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ï¿½
+        visited[i][j] = true; // ï¿½ï¿½ï¿½Îªï¿½Ñ·ï¿½ï¿½ï¿½
 
         while (!queue.isEmpty()) {
             int[] cell = queue.poll();
             int curRow = cell[0], curCol = cell[1];
 
-            // ¼ì²éµ±Ç°µ¥Ôª¸ñÊÇ·ñº¬ÓÐÔëÉùµã
+            // ï¿½ï¿½éµ±Ç°ï¿½ï¿½Ôªï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (this.hasCell(curRow, curCol) && this.getCell(curRow, curCol).getNoiseList()) {
-                return new int[]{curRow, curCol}; // ÕÒµ½×î½üµÄº¬ÔëÉùµ¥Ôª¸ñ
+                return new int[]{curRow, curCol}; // ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½Äºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½
             }
 
-            // ±éÀúµ±Ç°µ¥Ôª¸ñµÄËùÓÐÁÚ¾Ó
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¾ï¿½
             int[] dRow = {-1, 1, 0, 0};
             int[] dCol = {0, 0, -1, 1};
             for (int k = 0; k < 4; k++) {
                 int newRow = curRow + dRow[k], newCol = curCol + dCol[k];
-                // ¼ì²éÐÂµ¥Ôª¸ñÊÇ·ñÔÚÍø¸ñ·¶Î§ÄÚÇÒÎ´±»·ÃÎÊ
+                // ï¿½ï¿½ï¿½ï¿½Âµï¿½Ôªï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î§ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 if (newRow >= 0 && newRow < nrows && newCol >= 0 && newCol < ncols && !visited[newRow][newCol]) {
-                    queue.offer(new int[]{newRow, newCol}); // ÐÂµ¥Ôª¸ñÈë¶Ó
-                    visited[newRow][newCol] = true; // ±ê¼ÇÎªÒÑ·ÃÎÊ
+                    queue.offer(new int[]{newRow, newCol}); // ï¿½Âµï¿½Ôªï¿½ï¿½ï¿½ï¿½ï¿½
+                    visited[newRow][newCol] = true; // ï¿½ï¿½ï¿½Îªï¿½Ñ·ï¿½ï¿½ï¿½
                 }
             }
         }
 
-        return new int[]{-1, -1}; // Èç¹ûÍø¸ñÖÐÃ»ÓÐÔëÉùµã£¬·µ»Ø[-1, -1]
+        return new int[]{-1, -1}; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã£¬ï¿½ï¿½ï¿½ï¿½[-1, -1]
     }
 
     /**
