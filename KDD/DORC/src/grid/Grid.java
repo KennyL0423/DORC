@@ -276,6 +276,42 @@ public class Grid {
      * @return a list of neighbor Cells of current cell
      */
     public int[] oldcalculateNearestNonNoiseCell(int i, int j) {
+        boolean[][] visited = new boolean[nrows][ncols];
+        Queue<Integer> queue = new LinkedList<>();
+        int key = i * (ncols + 1) + j;
+        queue.add(key);
+        visited[i][j] = true;
+
+        int[] di = {1, -1, 0, 0};
+        int[] dj = {0, 0, 1, -1};
+        int nc[] = new int [2];
+        while(!queue.isEmpty()) {
+            int cur_key = queue.poll();
+            int cur_i = cur_key/(ncols+1); // rownum
+            int cur_j = cur_key%(ncols+1); // colnum
+            if(this.hasCell(cur_i, cur_j)){
+                if(this.getCell(cur_i, cur_j).getNonNoiseList())
+                {
+                    nc[0] = cur_i;
+                    nc[1] = cur_j;
+                    return nc;
+                }
+            }
+            for (int k=0; k<4; k++){
+                int new_i = cur_i + di[k];
+                int new_j = cur_j + dj[k];
+                if(new_i>=0 && new_i<nrows && new_j>=0 && new_j<ncols && !visited[new_i][new_j]){
+                    int new_key = new_i * (ncols + 1) + new_j;
+                    visited[new_i][new_j] = true;
+                    queue.add(new_key);
+                }
+            }
+        }
+        nc[0] = -1;
+        nc[1] = -1;
+        return nc;
+    }
+    public int[] calculateNearNonNoiseCell(int i, int j) {
 //      similar to calculateNearestNoiseCell
 //      Cell nCell = null;
         int mv=1000000000;
