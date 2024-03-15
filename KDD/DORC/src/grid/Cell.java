@@ -26,12 +26,13 @@ public class Cell {
      */
     public Point getNearestCorePoint(Point point) {
         Point nearestCorePoint = null;
-
+        double nearestDistance = Double.MAX_VALUE; // Initialize with the maximum value
         for (Point p : list) {
-            if(p.isCore()) {
-                // find the first nearest core point
-                if ((nearestCorePoint == null) || (point.getDistanceFrom(p) < point.getDistanceFrom(nearestCorePoint))) {
+            if (p.isCore()) {
+                double distance = point.getDistanceFrom(p); // Calculate once per core point
+                if (nearestCorePoint == null || distance < nearestDistance) {
                     nearestCorePoint = p;
+                    nearestDistance = distance; // Update the nearest distance
                 }
             }
         }
@@ -98,33 +99,21 @@ public class Cell {
         else
         {
             Point np=null;
-//       	 List<Point> noiseList = new ArrayList<>();
-//    		System.out.println("Plist: "+this.getList().size());
             for(Point p:this.getList())
             {
                 if(p.isNoise())
-//       		 if(p.getLabel().equals("NOISE"))
                 {
-//       			 System.out.print("NOISE");
-//       			System.out.println("P: "+p.isNoise());
-//       			System.out.println("Pgrid: "+p.getGrid(0, 0)[0]);
                     np=p;
                     break;
-//       			 return true;
                 }
             }
             if (np!=null)
             {
-//       		System.out.println("NP: "+np.isNoise());
                 return true;
             }
             else
                 return false;
         }
-
-
-
-
     }
 
     public boolean getNonNoiseList() {

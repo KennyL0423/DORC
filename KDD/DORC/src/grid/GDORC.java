@@ -298,17 +298,16 @@ public class GDORC extends Scan {
      */
     public ArrayList<Point> NeighborPoints(Point pi){
         ArrayList<Point> neighbors = new ArrayList<>();
-        // get i and j for ui (cell that pi is in)
-        int [] pi_ij = pi.getGrid(minX, minY);
+        // 获取pi所在的单元格位置
+        int[] pi_ij = pi.getGrid(minX, minY);
+        // 计算邻近单元格
         List<Cell> nCells = grid.calculateNeighboringCells(pi_ij[0], pi_ij[1]);
-        for (Cell neighborCell : nCells) { //for every neighbor cell
-            if (!neighborCell.isEmpty()) {//周边cell非空
-                for(Point pt: neighborCell.getList()){
-                    if(pt.getDistanceFrom(pi)<=eps){
-                        neighbors.add(pt);
-                    }
-                }
-            }
+        // 遍历每个邻近单元格
+        for (Cell neighborCell : nCells) {
+            // 周边cell非空的情况下，添加满足条件的邻近点
+            neighborCell.getList().stream()
+                    .filter(pt -> pt.getDistanceFrom(pi) <= eps)
+                    .forEach(neighbors::add);
         }
         return neighbors;
     }
@@ -452,42 +451,20 @@ public class GDORC extends Scan {
     public void qdorc(){
         ArrayList<Point> nonCore = new ArrayList<>(Noise);
         nonCore.addAll(Border);
-        Collections.sort(nonCore, new Comparator<Point>(){
-            @Override
-            public int compare(Point o1, Point o2) {
-                if(o1.getYLP() < o2.getYLP())
-                    return -1;
-                if(o1.getYLP() > o2.getYLP())
-                    return 1;
-                return 0;
-            }
-        });
-        // gdorc algorithm here: algorithm 2 in paper
-        // repair while noise points exist
-        double nearestNoise = 0.0;
-        double nearestNonNoise = 0.0;
-        while (Noise.size()!=0)
+        nonCore.sort(Comparator.comparingDouble(Point::getYLP));
+        while (!Noise.isEmpty())
         {
+            System.out.println(Noise.size());
             Point pj = nonCore.get(nonCore.size()-1);
             int [] uj_ij = pj.getGrid(minX, minY);
 //            Cell uj = grid.getCell(uj_ij[0], uj_ij[1]);
             ArrayList<Point> pj_noise_neighbors = noise_neighbors.get(pj.getId());
             if((Noise.size()-pj_noise_neighbors.size()) >= (1-pj.getYLP())*minPoints) {
-//                int repeatTimes = (int) ((1 - pj.getYLP()) * minPoints + 0.1) + pj_noise_neighbors.size();
                 int repeatTimes = (int)((1-pj.getYLP())*minPoints + 0.1);
-                // enough to make it a core, find the nearest noise cell ui to uj, find the noise point pi in ui
                 while (repeatTimes > 0) {
-                    // find the nearest noise cell
-//                    startTime = System.currentTimeMillis();
                     int[] ui_ij = grid.calculateNearestNoiseCell(uj_ij[0], uj_ij[1]);
-//                    int[] ui_ij = calculateNearestNoiseCell(uj_ij[0], uj_ij[1]);
-//                    endTime = System.currentTimeMillis();
-//                    nearestNoise += ((endTime-startTime)/1000.0);
                     if (grid.hasCell(ui_ij[0], ui_ij[1])) {
-//                        System.out.println("GDORC Noise size: " + Noise.size());
-//                        startTime = System.currentTimeMillis();
                         Cell ui = grid.getCell(ui_ij[0], ui_ij[1]);
-//                        List<Point> pis = ui.getList();
                         List<Point> pis = ui.getList();
                         for(Point pi : pis) {
                             if (pi.isNoise()) {

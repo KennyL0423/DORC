@@ -3,6 +3,7 @@ package grid;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Scan {
@@ -26,7 +27,7 @@ public abstract class Scan {
      * 1    \t 94.3 \t  -1.394
      * @param path
      */
-    public void readData(String path) {
+    public void oldreadData(String path) {
         String line = "";
         int id = 0;
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
@@ -39,6 +40,24 @@ public abstract class Scan {
         } catch (IOException ex) {
             System.out.println("Please enter a valid filepath.");
             System.exit(0);
+        }
+    }
+    public void readData(String path) {
+        int id = 0;
+        List<Point> tempPoints = new ArrayList<>(); // Temporary list to avoid resizing
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+//        br.readLine(); // Uncomment to skip header
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] attr = line.split("\t");
+                double x = Double.parseDouble(attr[1]);
+                double y = Double.parseDouble(attr[2]);
+                tempPoints.add(new Point(id++, x, y));
+            }
+            points.addAll(tempPoints); // Add all at once to the main list
+        } catch (IOException ex) {
+            System.out.println("Error reading the file: " + ex.getMessage());
+            System.exit(1);
         }
     }
 

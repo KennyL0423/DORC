@@ -118,14 +118,12 @@ public class Point implements Comparable<Object> {
         return xlp;
     }
 
-    public int [] getGrid(double minX, double minY) {
-        grid [0]=(int) ((x - minX) / (GDORC.eps / Math.sqrt(2)));
-        grid [1]=(int) ((y - minY) / (GDORC.eps / Math.sqrt(2)));
-//    		System.out.println("p.getGrid: "+grid[0]+" "+grid[1]);
-
-        return grid;
+    public int[] getGrid(double minX, double minY) {
+        double cellWidth = GDORC.eps / Math.sqrt(2);
+        int gridX = (int) ((x - minX) / cellWidth);
+        int gridY = (int) ((y - minY) / cellWidth);
+        return new int[] {gridX, gridY};
     }
-
 
     public int getCluster() {
         return cluster;
