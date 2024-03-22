@@ -397,7 +397,7 @@ public class Grid {
 
     public void setPointInCell(int x, int y, Point newPoint) {
         int key = x * ncols + y; // Corrected key calculation
-        grid.putIfAbsent(key, new Cell()); // Use putIfAbsent to simplify the logic
+        grid.putIfAbsent(key, new Cell(key)); // Use putIfAbsent to simplify the logic
         grid.get(key).addPoint(newPoint);
     }
 

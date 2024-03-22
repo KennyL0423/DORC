@@ -4,14 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cell {
+    public int key;
     private List<Point> list;
     private List<Point> noiseList;
     private List<Point> nonNoiseList;
     private int clusterNum;
     private boolean isCore;
+    public int type = 0; // 0 undetermine, 1 all core, 2 has core, 3 all noise, 4 has noise
 
 
     public Cell() {
+        clusterNum = -1;
+        list = new ArrayList<>();
+        noiseList = new ArrayList<>();
+        nonNoiseList = new ArrayList<>();
+        isCore = false;
+    }
+    public Cell(int key){
+        this.key = key;
         clusterNum = -1;
         list = new ArrayList<>();
         noiseList = new ArrayList<>();

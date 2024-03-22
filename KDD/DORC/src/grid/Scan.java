@@ -13,6 +13,7 @@ public abstract class Scan {
     protected List<Point> ilpdata; //the list of all points of our input file
     protected List<Point> Noise; //the list of noise points of our input file
     protected List<Point> Border; //the list of border points of our input file
+    protected List<Point> BorderNoise;
     protected List<Cluster> clusters; //the list of all clusters uniformed by our algorithm
     protected static int minPoints;
     protected static double eps;

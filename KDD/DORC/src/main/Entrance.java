@@ -22,6 +22,7 @@ public class Entrance {
 //        debug_ldorc();
 //        GPS_exp();
 //        GPS_exp_eps();
+//        GPS_exp_eta();
 //        debug_gdorc();
     }
     public static void timeLog(String outputPath, double time){
@@ -86,7 +87,7 @@ public class Entrance {
         for (int size : sizeArray){
             startTime = System.currentTimeMillis();
             for (int i=0; i<10; i++) {
-                DBSCAN dbscan = new DBSCAN(0.06, 500, "./data/foursquare/" + size + "/"+ i + "/noiseData.dat");
+                DBSCAN dbscan = new DBSCAN(0.1, 500, "./data/foursquare/" + size + "/"+ i + "/noiseData.dat");
                 dbscan.log(outputPath+size+"/" + i + "/repairData.dat");
             }
             endTime = System.currentTimeMillis();
@@ -101,12 +102,14 @@ public class Entrance {
         long startTime, endTime;
         double rate = 0.1;
 //        int eta = 300;
-        double eps = 0.06;
-        int eta_list[] = {50,100,150,200,250,300,350,400,450,500};
+        double eps = 0.2;
+//        int eta_list[] = {50,100,150,200,250,300,350,400,450,500};
+        int eta_list[] ={300};
 //        double eps_list[] = {0.02, 0.04,0.06, 0.08,0.10};
         //QDORC
-//        outputPath = "./outputdataly/foursquare_once/dirty_rate=0.10_eta/QDORC/";
+//        outputPath = "./outputdataly/foursquare_once/dirty_rate=0.10_eta0.2/QDORC/";
 //        for (int eta: eta_list){
+//            System.out.println("QDORC: " + eta);
 //            startTime = System.currentTimeMillis();
 ////            for (int i=0; i<10; i++) {
 ////                new Dataset().importDataset("./data/foursquare/100000/" + rate + "/" + i + "/noiseData.dat");
@@ -123,8 +126,9 @@ public class Entrance {
 //        }
 
         // LDORC
-//        outputPath = "./outputdataly/foursquare_once/dirty_rate=0.10_eta/LDORC/";
+//        outputPath = "./outputdataly/foursquare_once/dirty_rate=0.10_eta0.2/LDORC/";
 //        for (int eta: eta_list){
+//            System.out.println("LDORC: " + eta);
 //            startTime = System.currentTimeMillis();
 ////            for (int i=0; i<10; i++) {
 ////                new Dataset().importDataset("./data/foursquare/100000/" + rate + "/" + i + "/noiseData.dat");
@@ -141,17 +145,20 @@ public class Entrance {
 //        }
 
         //GDORC
-        outputPath = "./outputdataly/foursquare_once/dirty_rate=0.10_eta/GDORC/";
+        outputPath = "./outputdataly/foursquare_once/dirty_rate=0.10_eta0.2/GDORC/";
         for (int eta:eta_list){
+            System.out.println("GDORC: " + eta);
             startTime = System.currentTimeMillis();
 //            for (int i=0; i<10; i++) {
 //                GDORC gdorc = new GDORC(0.06, 500, "./data/foursquare/100000/" + rate + "/"+ i +"/noiseData.dat");
 //                gdorc.log(outputPath+rate+"/" + i +"/repairData.dat");
 //            }
             GDORC gdorc = new GDORC(eps, eta, "./data/foursquare/100000/" + rate + "/0/noiseData.dat");
-            gdorc.log(outputPath + eta + "/repairData.dat");
+//            gdorc.log(outputPath + eta + "/repairData.dat");
             endTime = System.currentTimeMillis();
-            timeLog(outputPath+"GDORC_time.txt", (endTime-startTime)/1000.0);
+//            timeLog(outputPath+"GDORC_time.txt", (endTime-startTime)/1000.0);
+            System.out.println((endTime-startTime)/1000.0);
+
         }
 //        String currentPath = System.getProperty("user.dir");
 //        System.out.println("Current working directory: " + currentPath);
@@ -178,25 +185,25 @@ public class Entrance {
 //        double eps = 0.06;
         int eta_list[] = {100,200,300,400,500};
 //        double eps_list[] = {0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.10};
-        double eps_list[] = {0.1, 0.2, 0.3};
+        double eps_list[] = {0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5};
 //        //QDORC
-//        outputPath = "./outputdataly/foursquare_once/dirty_rate=0.10/QDORC/";
-//        for (double eps: eps_list){
-//            startTime = System.currentTimeMillis();
-////            for (int i=0; i<10; i++) {
-////                new Dataset().importDataset("./data/foursquare/100000/" + rate + "/" + i + "/noiseData.dat");
-////                QDORC qdorc = new QDORC(500, 0.06);
-////                qdorc.log(outputPath + rate + "/" + i +"/repairData.dat");
-////                Dataset.clearAll();
-////            }
-//            new Dataset().importDataset("./data/foursquare/100000/" + rate + "/0/noiseData.dat");
-//            QDORC qdorc = new QDORC(eta, eps);
-//            qdorc.log(outputPath + eps +"/repairData.dat");
-//            Dataset.clearAll();
-//            endTime = System.currentTimeMillis();
-//            timeLog(outputPath + "QDORC_time.txt", (endTime-startTime)/1000.0);
-//        }
-//
+        outputPath = "./outputdataly/foursquare_once/dirty_rate=0.10/QDORC/";
+        for (double eps: eps_list){
+            startTime = System.currentTimeMillis();
+//            for (int i=0; i<10; i++) {
+//                new Dataset().importDataset("./data/foursquare/100000/" + rate + "/" + i + "/noiseData.dat");
+//                QDORC qdorc = new QDORC(500, 0.06);
+//                qdorc.log(outputPath + rate + "/" + i +"/repairData.dat");
+//                Dataset.clearAll();
+//            }
+            new Dataset().importDataset("./data/foursquare/100000/" + rate + "/0/noiseData.dat");
+            QDORC qdorc = new QDORC(eta, eps);
+            qdorc.log(outputPath + eps +"/repairData.dat");
+            Dataset.clearAll();
+            endTime = System.currentTimeMillis();
+            timeLog(outputPath + "QDORC_time.txt", (endTime-startTime)/1000.0);
+        }
+
         // LDORC
         outputPath = "./outputdataly/foursquare_once/dirty_rate=0.10/LDORC/";
         for (double eps: eps_list){
@@ -216,18 +223,18 @@ public class Entrance {
         }
 
 //        //GDORC
-//        outputPath = "./outputdataly/foursquare_once/dirty_rate=0.10/GDORC/";
-//        for (double eps:eps_list){
-//            startTime = System.currentTimeMillis();
-////            for (int i=0; i<10; i++) {
-////                GDORC gdorc = new GDORC(0.06, 500, "./data/foursquare/100000/" + rate + "/"+ i +"/noiseData.dat");
-////                gdorc.log(outputPath+rate+"/" + i +"/repairData.dat");
-////            }
-//            GDORC gdorc = new GDORC(eps, eta, "./data/foursquare/100000/" + rate + "/0/noiseData.dat");
-//            gdorc.log(outputPath + eps + "/repairData.dat");
-//            endTime = System.currentTimeMillis();
-//            timeLog(outputPath+"GDORC_time.txt", (endTime-startTime)/1000.0);
-//        }
+        outputPath = "./outputdataly/foursquare_once/dirty_rate=0.10/GDORC/";
+        for (double eps:eps_list){
+            startTime = System.currentTimeMillis();
+//            for (int i=0; i<10; i++) {
+//                GDORC gdorc = new GDORC(0.06, 500, "./data/foursquare/100000/" + rate + "/"+ i +"/noiseData.dat");
+//                gdorc.log(outputPath+rate+"/" + i +"/repairData.dat");
+//            }
+            GDORC gdorc = new GDORC(eps, eta, "./data/foursquare/100000/" + rate + "/0/noiseData.dat");
+            gdorc.log(outputPath + eps + "/repairData.dat");
+            endTime = System.currentTimeMillis();
+            timeLog(outputPath+"GDORC_time.txt", (endTime-startTime)/1000.0);
+        }
 
 //        //DBSCAN_
 //        outputPath = "./outputdata/foursquare/DBSCAN/eta=500_eps=0.06/";
@@ -619,20 +626,21 @@ public class Entrance {
     public static void example_exp1(){
         double[] rateArray = {0.015, 0.03, 0.045, 0.06, 0.075, 0.09, 0.105, 0.12, 0.135, 0.15, 0.165, 0.18, 0.195, 0.21};
 //        double[] rateArray = {0.06, 0.12, 0.15, 0.18};
+//        double[] rateArray = {0.18};
         long startTime, endTime;
         String outputPath;
-        int eta = 8;
-        double eps = 20;
+        int eta = 6;
+        double eps = 15;
 
         String method = "QDORC";
-//        // exp1, fix eta and eps, change rate
+        // exp1, fix eta and eps, change rate
         outputPath = "./outputdataly/updateExample/QDORC/eta="+eta+"_eps="+(int)eps+"/";
-        startTime = System.currentTimeMillis();
-        for (int i = 0; i < 19; i++) {
-            new Dataset().importDataset("./data/updateExample/" + "0.03" + "/noiseData.dat");
-            QDORC qdorc = new QDORC(eta, eps);
-            Dataset.clearAll();
-        }
+//        startTime = System.currentTimeMillis();
+//        for (int i = 0; i < 19; i++) {
+//            new Dataset().importDataset("./data/updateExample/" + "0.03" + "/noiseData.dat");
+//            QDORC qdorc = new QDORC(eta, eps);
+//            Dataset.clearAll();
+//        }
         for (double rate : rateArray) {
             startTime = System.currentTimeMillis();
             for (int i = 0; i < 9; i++) {
@@ -652,15 +660,14 @@ public class Entrance {
         method = "LDORC";
         // exp1, fix eta and eps, change rate
         outputPath = "./outputdataly/updateExample/LDORC/eta="+eta+"_eps="+(int)eps+"/";
-        startTime = System.currentTimeMillis();
-        for (int i = 0; i < 19; i++) {
-            new Dataset().importDataset("./data/updateExample/" + "0.03" + "/noiseData.dat");
-            LDORC LDORC = new LDORC(eta, eps);
-            Dataset.clearAll();
-        }
+//        startTime = System.currentTimeMillis();
+//        for (int i = 0; i < 19; i++) {
+//            new Dataset().importDataset("./data/updateExample/" + "0.03" + "/noiseData.dat");
+//            LDORC LDORC = new LDORC(eta, eps);
+//            Dataset.clearAll();
+//        }
         for (double rate : rateArray) {
             startTime = System.currentTimeMillis();
-
             for (int i = 0; i < 9; i++) {
                 new Dataset().importDataset("./data/updateExample/" + rate + "/noiseData.dat");
                 LDORC LDORC = new LDORC(eta, eps);
@@ -678,18 +685,16 @@ public class Entrance {
         method = "GDORC";
         // exp1, fix eta and eps, change rate
         outputPath = "./outputdataly/updateExample/GDORC/eta="+eta+"_eps="+(int)eps+"/";
-        startTime = System.currentTimeMillis();
-        for (int i = 0; i < 19; i++) {
-            GDORC gdorc = new GDORC(eps, eta, "./data/updateExample/" + "0.03" + "/noiseData.dat");
-        }
+//        startTime = System.currentTimeMillis();
+//        for (int i = 0; i < 19; i++) {
+//            GDORC gdorc = new GDORC(eps, eta, "./data/updateExample/" + "0.03" + "/noiseData.dat");
+//        }
         for (double rate : rateArray) {
             startTime = System.currentTimeMillis();
-
             for (int i = 0; i < 9; i++) {
                 GDORC gdorc = new GDORC(eps, eta, "./data/updateExample/" + rate + "/noiseData.dat");
             }
             GDORC gdorc = new GDORC(eps, eta, "./data/updateExample/" + rate + "/noiseData.dat");
-
             endTime = System.currentTimeMillis();
             gdorc.log(outputPath + rate + "/repairData.dat");
             timeLog(outputPath + method + "_time.txt", (endTime - startTime)/10000.0);
@@ -698,12 +703,11 @@ public class Entrance {
         // DBSCAN
         outputPath = "./outputdataly/updateExample/DBSCAN/eta="+eta+"_eps="+(int)eps+"/";
         startTime = System.currentTimeMillis();
-        for (int i = 0; i < 19; i++) {
-            DBSCAN dbscan = new DBSCAN(eps, eta, "./data/updateExample/" + "0.03" + "/noiseData.dat");
-        }
+//        for (int i = 0; i < 19; i++) {
+//            DBSCAN dbscan = new DBSCAN(eps, eta, "./data/updateExample/" + "0.03" + "/noiseData.dat");
+//        }
         for (double rate : rateArray){
             startTime = System.currentTimeMillis();
-
             for (int i = 0; i < 9; i++) {
                 DBSCAN dbscan = new DBSCAN(eps, eta, "./data/updateExample/" + rate + "/noiseData.dat");
             }
@@ -715,12 +719,113 @@ public class Entrance {
             Dataset.clearAll();
         }
     }
+    public static void GPS_exp_eta(){
+        double rate = 0.12;
+        double eps = 8e-5;
+        long startTime, endTime;
+        String outputPath;
+        int[] etaArray = {5,6,7,8,9,10,11,12,13,14};
+        String std = "std=0.0001/";
+//        String epsLine = "_eps=1e-4/";
+        String method = "QDORC";
+//        // exp1, fix eta and eps, change rate
+        outputPath = "./outputdataly/updateReal/eta_test/" + std + "QDORC/eps="+eps + "_rate=" +rate + "/";
+        startTime = System.currentTimeMillis();
+        for (int i = 0; i < 19; i++) {
+            new Dataset().importDataset("./data/updateReal/" + std + "0.03" + "/noiseData.dat");
+            QDORC qdorc = new QDORC(8, 10e-5);
+            Dataset.clearAll();
+        }
+        for (int eta : etaArray) {
+            startTime = System.currentTimeMillis();
+            for (int i = 0; i < 9; i++) {
+                new Dataset().importDataset("./data/updateReal/" + std + rate + "/noiseData.dat");
+                QDORC qdorc = new QDORC(eta, eps);
+                Dataset.clearAll();
+            }
+            new Dataset().importDataset("./data/updateReal/" + std + rate + "/noiseData.dat");
+            QDORC qdorc = new QDORC(eta, eps);
+            Dataset.clearAll();
+
+            endTime = System.currentTimeMillis();
+            qdorc.log(outputPath + eps + "/repairData.dat");
+            timeLog(outputPath + method + "_time.txt", (endTime - startTime) / 10000.0);
+        }
+
+        method = "LDORC";
+        // exp1, fix eta and eps, change rate
+        outputPath = "./outputdataly/updateReal/eta_test/" + std + "LDORC/eps="+eps + "_rate=" +rate + "/";
+        startTime = System.currentTimeMillis();
+        for (int i = 0; i < 19; i++) {
+            new Dataset().importDataset("./data/updateReal/" + std + "0.03" + "/noiseData.dat");
+            LDORC LDORC = new LDORC(8, 10e-5);
+            Dataset.clearAll();
+        }
+        for (int eta : etaArray) {
+            startTime = System.currentTimeMillis();
+
+            for (int i = 0; i < 9; i++) {
+                new Dataset().importDataset("./data/updateReal/" + std + rate + "/noiseData.dat");
+                LDORC LDORC = new LDORC(eta, eps);
+                Dataset.clearAll();
+            }
+            new Dataset().importDataset("./data/updateReal/" + std + rate + "/noiseData.dat");
+            LDORC ldorc = new LDORC(eta, eps);
+            Dataset.clearAll();
+            endTime = System.currentTimeMillis();
+
+            ldorc.log(outputPath + eps + "/repairData.dat");
+            timeLog(outputPath + method + "_time.txt", (endTime - startTime)/10000.0);
+        }
+
+        method = "GDORC";
+        // exp1, fix eta and eps, change rate
+        outputPath = "./outputdataly/updateReal/eta_test/" + std + "GDORC/eps="+eps + "_rate=" +rate + "/";
+        startTime = System.currentTimeMillis();
+        for (int i = 0; i < 19; i++) {
+            GDORC gdorc = new GDORC(10e-5, 8, "./data/updateReal/" + std + "0.03" + "/noiseData.dat");
+        }
+        for (int eta : etaArray) {
+            startTime = System.currentTimeMillis();
+
+            for (int i = 0; i < 9; i++) {
+                GDORC gdorc = new GDORC(eps, eta, "./data/updateReal/" + std + rate + "/noiseData.dat");
+            }
+            GDORC gdorc = new GDORC(eps, eta, "./data/updateReal/" + std + rate + "/noiseData.dat");
+
+            endTime = System.currentTimeMillis();
+            gdorc.log(outputPath + eps + "/repairData.dat");
+            timeLog(outputPath + method + "_time.txt", (endTime - startTime)/10000.0);
+        }
+
+        // DBSCAN
+        outputPath = "./outputdataly/updateReal/eta_test/" + std + "DBSCAN/eps="+eps + "_rate=" +rate + "/";
+        startTime = System.currentTimeMillis();
+        for (int i = 0; i < 19; i++) {
+            DBSCAN dbscan = new DBSCAN(10e-5, 8, "./data/updateReal/" + std + "0.03" + "/noiseData.dat");
+        }
+        for (int eta : etaArray){
+            startTime = System.currentTimeMillis();
+
+            for (int i = 0; i < 9; i++) {
+                DBSCAN dbscan = new DBSCAN(eps, eta, "./data/updateReal/" + std + rate + "/noiseData.dat");
+            }
+            DBSCAN dbscan = new DBSCAN(eps, eta, "./data/updateReal/" + std + rate + "/noiseData.dat");
+            dbscan.log(outputPath + eps + "/repairData.dat");
+
+            endTime = System.currentTimeMillis();
+            timeLog(outputPath+"DBSCAN_time.txt" ,(endTime-startTime)/10000.0);
+            Dataset.clearAll();
+        }
+
+
+    }
     public static void GPS_exp_eps(){
         double rate = 0.12;
         double[] epsArray = {5e-5, 6e-5, 7e-5, 8e-5, 9e-5, 10e-5, 11e-5, 12e-5, 13e-5, 14e-5, 15e-5};
         long startTime, endTime;
         String outputPath;
-        int eta = 10;
+        int eta = 8;
         String std = "std=0.0001/";
 //        String epsLine = "_eps=1e-4/";
         String method = "QDORC";
@@ -813,8 +918,6 @@ public class Entrance {
             timeLog(outputPath+"DBSCAN_time.txt" ,(endTime-startTime)/10000.0);
             Dataset.clearAll();
         }
-
-
     }
 
     public static void GPS_exp(){
@@ -823,7 +926,7 @@ public class Entrance {
         String outputPath;
         int eta = 6;
         double eps = 1e-4;
-        String std = "std=0.0006/";
+        String std = "std=0.0001/";
         String epsLine = "_eps=1e-4/";
         String method = "QDORC";
 //        // exp1, fix eta and eps, change rate

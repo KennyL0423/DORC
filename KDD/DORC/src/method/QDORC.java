@@ -85,9 +85,10 @@ public class QDORC {
                 return 0;
             }
         });
+        System.out.println("QDORC Noise size: " + noiseArray.size());
+        System.out.println("QDORC Border size: " + (unvisitedArray.size()-noiseArray.size()));
         // QDORC begins
         while (noiseArray.size()>0){
-            System.out.println("QDORC Noise size: " + noiseArray.size());
             // get the point p_j with the maximum y
             DORCStruct dorc = unvisitedArray.get(unvisitedArray.size()-1);
             dorc.state = DORCStruct.VISITED;

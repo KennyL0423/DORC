@@ -3,7 +3,8 @@ package utils;
 public class DORCStruct {
 //    public int[] h;
 //    public double[] w;
-    public int c;
+    public int original_c;
+    public int c = 0;
     public double y;
     public Point p;
     public boolean hasVisitedNeighbor = false;

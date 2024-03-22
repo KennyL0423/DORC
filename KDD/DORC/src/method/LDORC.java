@@ -7,6 +7,8 @@ import java.util.*;
 public class LDORC {
     ArrayList<DORCStruct> pointArray;
     public int eta;
+    private static long startTime;
+    private static long endTime;
     public double eps;
     public double tau;
     int n;
@@ -23,9 +25,12 @@ public class LDORC {
         pointArray = new ArrayList<DORCStruct>();
         this.eta = eta;
         this.eps = eps;
-//        this.tau = eps/5;
-        this.tau = 0;
+        this.tau = eps/5;
+//        this.tau = 0;
+        startTime = System.currentTimeMillis();
         initialize();
+        endTime = System.currentTimeMillis();
+        System.out.println((endTime-startTime)/1000.0);
         newrun();
     }
 
@@ -38,6 +43,32 @@ public class LDORC {
         getEpsilonNeighbor();
     }
 
+    private void nleaderCluster() {
+        // Consider using a spatial data structure for leaders if the search is expensive
+        for (DORCStruct dorc : pointArray) {
+            DORCStruct nearestLeader = null;
+            double minDistance = Double.MAX_VALUE;
+
+            for (DORCStruct leader : leaders) {
+                double distance = Point.getDistance(dorc.p, leader.p);
+                if (distance <= tau && distance < minDistance) {
+                    nearestLeader = leader;
+                    minDistance = distance;  // Update the nearest distance found
+                }
+            }
+
+            if (nearestLeader == null) {
+                leaders.add(dorc);
+                leaders_followers.put(dorc, new ArrayList<>());
+                neighbor_leaders.put(dorc, new ArrayList<>());
+                dorc.original_c = 1;
+            } else {
+                // Get or initialize the follower list for the nearest leader
+                leaders_followers.computeIfAbsent(nearestLeader, k -> new ArrayList<>()).add(dorc);
+                nearestLeader.original_c++;
+            }
+        }
+    }
     private void leaderCluster(){
         for(DORCStruct dorc : pointArray){
             DORCStruct l = null;
@@ -53,11 +84,11 @@ public class LDORC {
                 leaders_followers.put(dorc, tmp);
                 ArrayList<DORCStruct> tmp2 = new ArrayList<>();
                 neighbor_leaders.put(dorc, tmp2);
-                dorc.c = 1;
+                dorc.original_c = 1;
             }else{
                 ArrayList<DORCStruct> followerList = leaders_followers.get(l);
                 followerList.add(dorc);
-                l.c++;
+                l.original_c++;
             }
         }
     }
@@ -70,16 +101,17 @@ public class LDORC {
     private void getEpsilonNeighbor(){
         System.out.println(leaders.size());
         for(DORCStruct l1 : leaders) {
+            l1.c += l1.original_c;
             for (DORCStruct l2 : leaders) {
-                if(l1.p.id<=l2.p.id) continue;
+                if(l1.p.id==l2.p.id) continue;
                 if ( Point.getDistance(l1.p, l2.p) <= this.eps - 2*tau) {
-                    l1.c += l2.c;
+                    l1.c += l2.original_c;
                     ArrayList<DORCStruct> l1neighbor = neighbor_leaders.get(l1);
-                    ArrayList<DORCStruct> l2neighbor = neighbor_leaders.get(l2);
-                    l1neighbor.add(l2);
-                    l2neighbor.add(l1);
+//                    ArrayList<DORCStruct> l2neighbor = neighbor_leaders.get(l2);
+                    if(!l1neighbor.contains(l2)) l1neighbor.add(l2);
+//                    if(!l2neighbor.contains(l1)) l2neighbor.add(l1);
                     neighbor_leaders.put(l1, l1neighbor);
-                    neighbor_leaders.put(l2, l2neighbor);
+//                    neighbor_leaders.put(l2, l2neighbor);
                 }
             }
             if (l1.c >= this.eta)
@@ -87,7 +119,7 @@ public class LDORC {
             if(l1.p.state == Point.CORE){
                 ArrayList<DORCStruct> neighborLeaders = neighbor_leaders.get(l1);
                 for (DORCStruct neighbor: neighborLeaders){
-                    if(neighbor.p.state == Point.NOISE){
+                    if(neighbor.p.state != Point.CORE){
                         neighbor.p.state = Point.EDGE;
                     }
                 }
@@ -97,6 +129,27 @@ public class LDORC {
                 }
             }
         }
+        int noise_cnt = 0;
+        int noise_pt_cnt = 0;
+        int border_cnt = 0;
+        int border_pt_cnt = 0;
+        int core_cnt = 0;
+        int core_pt_cnt = 0;
+        for(DORCStruct leader:leaders){
+            if(leader.p.state == Point.CORE){
+                core_cnt+=1;
+                core_pt_cnt+=leader.original_c;
+            } else if (leader.p.state==Point.EDGE) {
+                border_cnt+=1;
+                border_pt_cnt+=leader.original_c;
+            } else if (leader.p.state==Point.NOISE) {
+                noise_cnt+=1;
+                noise_pt_cnt+=leader.original_c;
+            }
+        }
+//        System.out.println("noise leader : " + noise_cnt + ", " + noise_pt_cnt);
+//        System.out.println("border leader: " + border_cnt + ", " + border_pt_cnt);
+//        System.out.println("core leader: " + core_cnt + ", " + core_pt_cnt);
         // calculate y for leaders
         for (DORCStruct leader: leaders){
             if (leader.p.state==Point.CORE) leader.state=DORCStruct.VISITED;
@@ -208,7 +261,7 @@ public class LDORC {
         ArrayList<DORCStruct> unvisitedArray = new ArrayList<DORCStruct>();
         ArrayList<DORCStruct> coreArray = new ArrayList<>();
         // update noise array and unvisited array
-        System.out.println("point array size: " + pointArray.size());
+//        System.out.println("point array size: " + pointArray.size());
         for (DORCStruct dorc : pointArray){
             if (dorc.p.state == Point.NOISE){
                 noiseArray.add(dorc);
@@ -226,11 +279,13 @@ public class LDORC {
                 return 0;
             }
         });
-        System.out.println("LDORC Noise size: " + noiseArray.size());
-        System.out.println("LDORC Border size: " + (unvisitedArray.size()-noiseArray.size()));
-        System.out.println("LDORC Core size: " + coreArray.size());
+//        System.out.println("LDORC Noise size: " + noiseArray.size());
+//        System.out.println("LDORC Border size: " + (unvisitedArray.size()-noiseArray.size()));
+//        System.out.println("LDORC Core size: " + coreArray.size());
+//        System.out.println("LDORC Leader size:"+ leaders.size());
         // QDORC begins
         while (noiseArray.size()>0){
+//            System.out.println(noiseArray.size());
             // get the point p_j with the maximum y
             DORCStruct dorc = unvisitedArray.get(unvisitedArray.size()-1);
             dorc.state = DORCStruct.VISITED;
@@ -245,7 +300,7 @@ public class LDORC {
                 if(dorc.p.id == noise.p.id){
                     continue;
                 }
-                if(Point.getDistance(dorc.p, noise.p) <= this.eps - tau){
+                if(Point.getDistance(dorc.p, noise.p) <= this.eps){
                     noise_neighbor_cnt++;
                 }
             }
